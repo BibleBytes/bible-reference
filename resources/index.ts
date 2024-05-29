@@ -1,6 +1,6 @@
 import { Testament, Book, Books, BooksOld, BooksNew } from "./books";
 import { BookMetadata } from "./utilities.js";
-import { Metadata_EN } from "./languages/en/index.js";
+import { Language, Metadata } from "./languages/index.js";
 
 
 export type {
@@ -14,6 +14,7 @@ export {
     Books,
     BooksOld,
     BooksNew,
-    Metadata_EN
+    Language,
+    Metadata
 };
 
