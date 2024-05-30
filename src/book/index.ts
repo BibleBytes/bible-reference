@@ -22,7 +22,7 @@ export function GetBook(
         }
         return metadata[id];
     }
-    return metadata.find((b) => b.name === id);
+    return metadata.find((b) => b.id === id);
 }
 
 /**
