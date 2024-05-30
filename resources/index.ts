@@ -1,4 +1,4 @@
-import { Testament, Book, Books, BooksOld, BooksNew } from "./books";
+import { Testament, Book, Books, BooksOld, BooksNew } from "./books.js";
 import { BookMetadata } from "./utilities.js";
 import { Language, Metadata } from "./languages/index.js";
 

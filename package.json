@@ -2,18 +2,26 @@
 	"name": "bible-reference-index",
 	"version": "1.0.0",
 	"description": "Christian Bible reference verse index and index validation system.",
+	"exports": "./dist/index.js",
+	"type": "module",
+	"scripts": {
+		"prepare": "npm run build",
+		"build": "node ./toolchain/build.js && tsc --emitDeclarationOnly -p ./toolchain/tsconfig.json",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/BibleBytes/bible-reference-index.git"
 	},
-	"homepage": "https://github.com/BibleBytes/bible-reference-index",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+	"engines": {
+		"node": ">=20"
 	},
+	"homepage": "https://github.com/BibleBytes/bible-reference-index",
 	"author": "BibleBytes",
 	"license": "MIT",
+	"files": ["dist/*"],
 	"devDependencies": {
+		"esbuild": "^0.21.4",
 		"typescript": "^5.4.5"
 	}
 }
