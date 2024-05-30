@@ -6,7 +6,8 @@
 	"type": "module",
 	"scripts": {
 		"prepare": "npm run build",
-		"build": "node ./toolchain/build.js && tsc --emitDeclarationOnly -p ./toolchain/tsconfig.json",
+		"build": "node ./build.js && tsc --emitDeclarationOnly",
+		"lint": "biome lint ./ && tsc --noEmit",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -19,8 +20,11 @@
 	"homepage": "https://github.com/BibleBytes/bible-reference-index",
 	"author": "BibleBytes",
 	"license": "MIT",
-	"files": ["dist/*"],
+	"files": [
+		"dist/*"
+	],
 	"devDependencies": {
+		"@biomejs/biome": "1.7.3",
 		"esbuild": "^0.21.4",
 		"typescript": "^5.4.5"
 	}
