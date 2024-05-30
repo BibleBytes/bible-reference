@@ -1,26 +1,26 @@
+import {
+    type Book,
+    Books,
+    type Language,
+    Metadata,
+} from "../../resources/index.js";
 import { GetBook } from "../book/index.js";
-import { type Book, Books, type Language, Metadata } from "../../resources/index.js";
-
 
 export class Reference {
-
-    
     public language: Language;
     public book: Book = Books[0];
     public chapter = 1;
     public verse = 1;
     public verseEnd?: number;
 
-
-    public constructor(language:Language, reference?:string) {
+    public constructor(language: Language, reference?: string) {
         this.language = language;
         if (reference) {
             this.Set(reference);
         }
     }
 
-
-    public Set(reference:string) {
+    public Set(reference: string) {
         const [book, chapter, verse, verseEnd] = this.Parse(reference);
         this.book = book;
         this.chapter = chapter;
@@ -28,8 +28,7 @@ export class Reference {
         this.verseEnd = verseEnd;
     }
 
-
-    public IsValid():boolean {
+    public IsValid(): boolean {
         const bookMetadata = GetBook(this.language, this.book);
         if (!bookMetadata) {
             return false;
@@ -54,20 +53,22 @@ export class Reference {
         return true;
     }
 
-
-    public toString(pretty?:boolean) {
+    public toString(pretty?: boolean) {
         if (!this.IsValid()) {
             return "INVALID";
         }
         if (pretty) {
             const bookName = Metadata[this.language][this.book];
-            return `${bookName} ${this.chapter}:${this.verse}${this.verseEnd ? `-${this.verseEnd}` : ""}`;
+            return `${bookName} ${this.chapter}:${this.verse}${
+                this.verseEnd ? `-${this.verseEnd}` : ""
+            }`;
         }
-        return `${this.book}:${this.chapter}:${this.verse}${this.verseEnd ? `:${this.verseEnd}` : ""}`;
+        return `${this.book}:${this.chapter}:${this.verse}${
+            this.verseEnd ? `:${this.verseEnd}` : ""
+        }`;
     }
 
-
-    private Parse(text:string):[Book, number, number, number|undefined] {
+    private Parse(text: string): [Book, number, number, number | undefined] {
         const sections = text.split(/[,:-\s\.]/);
         if (sections.length !== 3 && sections.length !== 4) {
             throw new Error("Invalid format: incorrect number of sections");
@@ -88,7 +89,7 @@ export class Reference {
             throw new Error("Invalid verse start number");
         }
 
-        let verseEnd: number|undefined;
+        let verseEnd: number | undefined;
         if (sections.length === 4) {
             verseEnd = Number.parseInt(sections[3], 10);
             if (Number.isNaN(verseEnd)) {
@@ -98,6 +99,4 @@ export class Reference {
 
         return [book, chapter, verse, verseEnd];
     }
-
 }
-

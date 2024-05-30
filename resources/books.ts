@@ -1,5 +1,3 @@
-
-
 /**
  * Enumerates the testaments of the Bible. \
  * `Testament.Old` = `"OLD"` \
@@ -9,9 +7,8 @@
  */
 export enum Testament {
     Old = "OLD",
-    New = "NEW"
+    New = "NEW",
 }
-
 
 /**
  * Enumerates the books of the Bible and assigns each book an ID, regardless
@@ -95,27 +92,27 @@ export enum Book {
     Revelation = "REV",
 }
 
-
-/** 
+/**
  * An array containing all the books of the Bible.
  * @readonly
  * @type {Book[]}
  */
-export const Books:readonly Book[] = Object.freeze(Object.values(Book));
-
+export const Books: readonly Book[] = Object.freeze(Object.values(Book));
 
 /**
  * An array containing the books of the Old Testament.
  * @readonly
  * @type {Book[]}
  */
-export const BooksOld:readonly Book[] = Object.freeze(Object.values(Book).slice(0, 39));
-
+export const BooksOld: readonly Book[] = Object.freeze(
+    Object.values(Book).slice(0, 39),
+);
 
 /**
  * An array containing the books of the New Testament.
  * @readonly
  * @type {Book[]}
  */
-export const BooksNew:readonly Book[] = Object.freeze(Object.values(Book).slice(39));
-
+export const BooksNew: readonly Book[] = Object.freeze(
+    Object.values(Book).slice(39),
+);
