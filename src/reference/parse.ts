@@ -1,1 +1,0 @@
-console.log("MAT:6:25:34".split(/[,:-\s\.]/));
