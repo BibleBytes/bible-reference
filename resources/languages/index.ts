@@ -1,4 +1,4 @@
-import { BookMetadata } from "../utilities.js";
+import type { BookMetadata } from "../utilities.js";
 import { Metadata_EN } from "./en/index.js";
 
 

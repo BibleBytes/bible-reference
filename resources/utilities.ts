@@ -1,4 +1,4 @@
-import { Book, Books, Testament } from "./books.js";
+import { type Book, Books, Testament } from "./books.js";
 
 
 export type BookMetadata = {

@@ -1,4 +1,4 @@
-import { Book, BookMetadata, Language, Metadata } from "../../resources/index.js";
+import { type Book, type BookMetadata, type Language, Metadata } from "../../resources/index.js";
 
 
 /**
