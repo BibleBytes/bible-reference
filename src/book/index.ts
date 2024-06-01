@@ -33,7 +33,7 @@ export function GetBook(
  */
 export function GetAllBooks(
     language: Language,
-    ids?: (number | Book)[],
+    ids?: (number | Book)[] | readonly Book[],
 ): readonly BookMetadata[] {
     if (!ids) {
         return Metadata[language];

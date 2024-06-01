@@ -104,7 +104,7 @@ export const Books: readonly Book[] = Object.freeze(Object.values(Book));
  * @readonly
  * @type {Book[]}
  */
-export const BooksOld: readonly Book[] = Object.freeze(
+export const BooksOldTestament: readonly Book[] = Object.freeze(
     Object.values(Book).slice(0, 39),
 );
 
@@ -113,6 +113,6 @@ export const BooksOld: readonly Book[] = Object.freeze(
  * @readonly
  * @type {Book[]}
  */
-export const BooksNew: readonly Book[] = Object.freeze(
+export const BooksNewTestament: readonly Book[] = Object.freeze(
     Object.values(Book).slice(39),
 );

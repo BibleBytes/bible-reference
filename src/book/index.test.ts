@@ -1,5 +1,12 @@
-import { Book, Language, Metadata } from "../../resources/index.js";
-import { GetBook } from "./index.js";
+import {
+    Book,
+    Language,
+    Metadata,
+    Books,
+    BooksNewTestament,
+    BooksOldTestament,
+} from "../../resources/index.js";
+import { GetAllBooks, GetBook } from "./index.js";
 import { expect } from "chai";
 
 describe("Get Book", () => {
@@ -81,5 +88,77 @@ describe("Get Book", () => {
     it("Get invalid by ID (gen)", () => {
         const book = GetBook(Language.English, "gen" as Book);
         expect(book).to.be.undefined;
+    });
+
+    it("Get Genesis, Job, and Revelation by index", () => {
+        const books = GetAllBooks(Language.English, [0, 17, 65]);
+        expect(books[0]).to.deep.equal(Metadata[Language.English][0]);
+        expect(books[1]).to.deep.equal(Metadata[Language.English][17]);
+        expect(books[2]).to.deep.equal(Metadata[Language.English][65]);
+    });
+
+    it("Get Genesis, Job, and Revelation by enum", () => {
+        const books = GetAllBooks(Language.English, [
+            Book.Genesis,
+            Book.Job,
+            Book.Revelation,
+        ]);
+        expect(books[0]).to.deep.equal(Metadata[Language.English][0]);
+        expect(books[1]).to.deep.equal(Metadata[Language.English][17]);
+        expect(books[2]).to.deep.equal(Metadata[Language.English][65]);
+    });
+
+    it("Get Genesis, Job, and Revelation by ID", () => {
+        const books = GetAllBooks(Language.English, [
+            "GEN" as Book,
+            "JOB" as Book,
+            "REV" as Book,
+        ]);
+        expect(books[0]).to.deep.equal(Metadata[Language.English][0]);
+        expect(books[1]).to.deep.equal(Metadata[Language.English][17]);
+        expect(books[2]).to.deep.equal(Metadata[Language.English][65]);
+    });
+
+    it("Get Genesis, Job, and Revelation by mixed", () => {
+        const books = GetAllBooks(Language.English, [
+            0,
+            Book.Job,
+            "REV" as Book,
+        ]);
+        expect(books[0]).to.deep.equal(Metadata[Language.English][0]);
+        expect(books[1]).to.deep.equal(Metadata[Language.English][17]);
+        expect(books[2]).to.deep.equal(Metadata[Language.English][65]);
+    });
+
+    it("Get All by Empty", () => {
+        const books = GetAllBooks(Language.English);
+        expect(books[0]).to.deep.equal(Metadata[Language.English][0]);
+        expect(books[11]).to.deep.equal(Metadata[Language.English][11]);
+        expect(books[29]).to.deep.equal(Metadata[Language.English][29]);
+        expect(books[37]).to.deep.equal(Metadata[Language.English][37]);
+        expect(books[65]).to.deep.equal(Metadata[Language.English][65]);
+    });
+
+    it("Get All by List", () => {
+        const books = GetAllBooks(Language.English, Books);
+        expect(books[0]).to.deep.equal(Metadata[Language.English][0]);
+        expect(books[11]).to.deep.equal(Metadata[Language.English][11]);
+        expect(books[29]).to.deep.equal(Metadata[Language.English][29]);
+        expect(books[37]).to.deep.equal(Metadata[Language.English][37]);
+        expect(books[65]).to.deep.equal(Metadata[Language.English][65]);
+    });
+
+    it("Get All of Old Testament", () => {
+        const books = GetAllBooks(Language.English, BooksOldTestament);
+        expect(books[0]).to.deep.equal(Metadata[Language.English][0]);
+        expect(books[29]).to.deep.equal(Metadata[Language.English][29]);
+        expect(books[38]).to.deep.equal(Metadata[Language.English][38]);
+    });
+
+    it("Get All of New Testament", () => {
+        const books = GetAllBooks(Language.English, BooksNewTestament);
+        expect(books[0]).to.deep.equal(Metadata[Language.English][39]);
+        expect(books[3]).to.deep.equal(Metadata[Language.English][42]);
+        expect(books[26]).to.deep.equal(Metadata[Language.English][65]);
     });
 });
