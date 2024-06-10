@@ -6,6 +6,10 @@ import {
 } from "../../resources/index.js";
 import { GetBook } from "../book/index.js";
 
+// FIXME - Add js docs
+
+const REF_FORMAT_REGEX = /^[A-Z]{3}([0-9])?([,:\-\s\.]([0-9]){1,3}){2,3}$/;
+
 export class Reference {
     public language: Language;
     public book: Book = Books[0];
@@ -17,6 +21,10 @@ export class Reference {
         this.language = language;
         if (reference) {
             this.Set(reference);
+            const error = this.GetError();
+            if (error !== undefined) {
+                throw new Error(`Invalid reference: ${error}`);
+            }
         }
     }
 
@@ -29,28 +37,32 @@ export class Reference {
     }
 
     public IsValid(): boolean {
+        return this.GetError() === undefined;
+    }
+
+    public GetError(): string | undefined {
         const bookMetadata = GetBook(this.language, this.book);
         if (!bookMetadata) {
-            return false;
+            return "Invalid book";
         }
 
         const chapterIndex = this.chapter - 1;
         if (chapterIndex < 0 || chapterIndex >= bookMetadata.chapters.length) {
-            return false;
+            return "Invalid chapter";
         }
 
         const maxVerses = bookMetadata.chapters[chapterIndex];
         if (this.verse < 1 || this.verse > maxVerses) {
-            return false;
+            return "Invalid verse";
         }
 
         if (this.verseEnd !== undefined) {
-            if (this.verseEnd < this.verse || this.verseEnd > maxVerses) {
-                return false;
+            if (this.verseEnd <= this.verse || this.verseEnd > maxVerses) {
+                return "Invalid verse range";
             }
         }
 
-        return true;
+        return undefined;
     }
 
     public toString(pretty?: boolean) {
@@ -58,7 +70,7 @@ export class Reference {
             return "INVALID";
         }
         if (pretty) {
-            const bookName = Metadata[this.language][this.book];
+            const bookName = GetBook(this.language, this.book)?.name;
             return `${bookName} ${this.chapter}:${this.verse}${
                 this.verseEnd ? `-${this.verseEnd}` : ""
             }`;
@@ -76,24 +88,24 @@ export class Reference {
 
         const book = sections[0] as Book;
         if (!Books.includes(book)) {
-            throw new Error("Invalid book abbreviation");
+            throw new Error("Invalid format: invalid book abbreviation");
         }
 
         const chapter = Number.parseInt(sections[1], 10);
         if (Number.isNaN(chapter)) {
-            throw new Error("Invalid chapter number");
+            throw new Error("Invalid format: invalid chapter number");
         }
 
         const verse = Number.parseInt(sections[2], 10);
         if (Number.isNaN(verse)) {
-            throw new Error("Invalid verse start number");
+            throw new Error("Invalid format: invalid verse start number");
         }
 
         let verseEnd: number | undefined;
         if (sections.length === 4) {
             verseEnd = Number.parseInt(sections[3], 10);
             if (Number.isNaN(verseEnd)) {
-                throw new Error("Invalid verse end number");
+                throw new Error("Invalid format: invalid verse end number");
             }
         }
 
