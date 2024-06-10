@@ -1,6 +1,6 @@
 {
     "name": "bible-reference-index",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "description": "Christian Bible reference verse index and index validation system.",
     "exports": "./dist/index.js",
     "type": "module",
