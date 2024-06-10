@@ -1,7 +1,7 @@
 {
-    "name": "bible-reference-index",
+    "name": "@biblebytes/bible-reference",
     "version": "0.0.0",
-    "description": "Christian Bible reference verse index and index validation system.",
+    "description": "Christian Bible reference library for indexing, referencing, and validating bible verses.",
     "exports": "./dist/index.js",
     "type": "module",
     "scripts": {
