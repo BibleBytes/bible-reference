@@ -1,13 +1,13 @@
+import { expect } from "chai";
 import {
     Book,
-    Language,
-    Metadata,
     Books,
     BooksNewTestament,
     BooksOldTestament,
+    Language,
+    Metadata,
 } from "../../resources/index.js";
 import { GetAllBooks, GetBook } from "./index.js";
-import { expect } from "chai";
 
 describe("Get Book", () => {
     it("Get Genesis by index", () => {

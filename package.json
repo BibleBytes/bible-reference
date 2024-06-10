@@ -20,9 +20,7 @@
     "homepage": "https://github.com/BibleBytes/bible-reference-index",
     "author": "BibleBytes",
     "license": "MIT",
-    "files": [
-        "dist/*"
-    ],
+    "files": ["dist/*"],
     "devDependencies": {
         "@biomejs/biome": "1.7.3",
         "@types/chai": "^4.3.16",

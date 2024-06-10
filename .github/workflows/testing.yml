@@ -32,6 +32,7 @@ jobs:
 
         
   formating:
+    name: Formating
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

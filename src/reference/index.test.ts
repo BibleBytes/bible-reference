@@ -1,6 +1,6 @@
+import { expect } from "chai";
 import { Book, Language } from "../../resources/index.js";
 import { Reference } from "./index.js";
-import { expect } from "chai";
 
 describe("Reference", () => {
     it("Default Values", () => {

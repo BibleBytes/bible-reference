@@ -1,6 +1,6 @@
 import { expect } from "chai";
-import { Metadata } from "./index.js";
 import { Language } from "../index.js";
+import { Metadata } from "./index.js";
 
 describe("Languages", () => {
     it("Genesis (English)", () => {
