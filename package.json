@@ -1,0 +1,35 @@
+{
+    "name": "@biblebytes/bible-reference",
+    "version": "0.0.0",
+    "description": "Christian Bible reference library for indexing, referencing, and validating bible verses.",
+    "exports": "./dist/index.js",
+    "type": "module",
+    "scripts": {
+        "prepare": "npm run build",
+        "build": "node ./build.js && tsc --emitDeclarationOnly",
+        "lint": "biome check --apply ./ && tsc --noEmit",
+        "test": "mocha ./"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BibleBytes/bible-reference-index.git"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "homepage": "https://github.com/BibleBytes/bible-reference-index",
+    "author": "BibleBytes",
+    "license": "MIT",
+    "files": ["dist/*"],
+    "devDependencies": {
+        "@biomejs/biome": "1.7.3",
+        "@types/chai": "^4.3.16",
+        "@types/mocha": "^10.0.6",
+        "chai": "^5.1.1",
+        "cross-env": "^7.0.3",
+        "esbuild": "^0.21.4",
+        "mocha": "^10.4.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.5"
+    }
+}
