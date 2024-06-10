@@ -1,3 +1,15 @@
+/*
+ *   Copyright (C) 2024 Bible Bytes.
+ *   distributed under the MIT License
+ *
+ *   author: Evan Sellers <sellersew@gmail.com>
+ *   date: Mon Jun 10 2024
+ *   file: index.ts
+ *   project: Bible Reference Index
+ *   purpose: Book Functions
+ *
+ */
+
 import {
     type Book,
     type BookMetadata,
@@ -44,3 +56,7 @@ export function GetAllBooks(
             .filter((b) => b !== undefined) as BookMetadata[],
     );
 }
+
+// For everyone born of God overcomes the world. This is the victory that has
+// overcome the world, even our faith.
+// - 1 John 5:4

@@ -1,3 +1,15 @@
+/*
+ *   Copyright (C) 2024 Bible Bytes.
+ *   distributed under the MIT License
+ *
+ *   author: Evan Sellers <sellersew@gmail.com>
+ *   date: Mon Jun 10 2024
+ *   file: utilities.ts
+ *   project: Bible Reference Index
+ *   purpose: Book Metadata Utilities
+ *
+ */
+
 import { type Book, Books, Testament } from "./books.js";
 
 export type BookMetadata = {
@@ -25,3 +37,6 @@ export function Define(books: BookMetadataPre[]): readonly BookMetadata[] {
         ),
     );
 }
+
+// May your unfailing love be with us, Lord, even as we put our hope in you.
+// - Psalm 33:22

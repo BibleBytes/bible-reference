@@ -1,3 +1,15 @@
+/*
+ *   Copyright (C) 2024 Bible Bytes.
+ *   distributed under the MIT License
+ *
+ *   author: Evan Sellers <sellersew@gmail.com>
+ *   date: Mon Jun 10 2024
+ *   file: books.ts
+ *   project: Bible Reference Index
+ *   purpose: Books of the Bible
+ *
+ */
+
 /**
  * Enumerates the testaments of the Bible. \
  * `Testament.Old` = `"OLD"` \
@@ -116,3 +128,7 @@ export const BooksOldTestament: readonly Book[] = Object.freeze(
 export const BooksNewTestament: readonly Book[] = Object.freeze(
     Object.values(Book).slice(39),
 );
+
+// For great is your love, reaching to the heavens; your faithfulness reaches
+// to the skies.
+// - Psalm 57:10

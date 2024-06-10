@@ -1,3 +1,15 @@
+/*
+ *   Copyright (C) 2024 Bible Bytes.
+ *   distributed under the MIT License
+ *
+ *   author: Evan Sellers <sellersew@gmail.com>
+ *   date: Mon Jun 10 2024
+ *   file: index.ts
+ *   project: Bible Reference Index
+ *   purpose: English (EN) Metadata
+ *
+ */
+
 import { Define } from "../../utilities.js";
 
 export const Metadata_EN = Define([
@@ -361,3 +373,7 @@ export const Metadata_EN = Define([
         ],
     },
 ]);
+
+// I have not departed from the commands of his lips; I have treasured the
+// words of his mouth more than my daily bread.
+// - Job 23:12
