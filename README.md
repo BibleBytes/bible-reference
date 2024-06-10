@@ -1,6 +1,6 @@
 <p align="center">
-    <a href="https://docs.page/sellersindustry/SherpaJS">
-        <img src="https://mybiblebytes.com/logo/biblebytes-light.png" height="128px"/>
+    <a href="https://mybiblebytes.com/opensource">
+        <img src="https://github.com/BibleBytes/landing-page/blob/main/favicon/android-chrome-512x512.png" height="128px"/>
         <h1 align="center">Bible Reference</h1>
     </a>
 </p>
