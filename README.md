@@ -238,7 +238,7 @@ console.log(exodus);
 <br/>
 
 
-#### GetAllBooks
+## GetAllBooks
 
 Retrieves book metadata for multiple IDs or names.
 
