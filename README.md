@@ -1,5 +1,18 @@
-# Bible Reference Index
+<p align="center">
+    <a href="https://docs.page/sellersindustry/SherpaJS">
+        <img src="https://mybiblebytes.com/logo/biblebytes-light.png" height="128px"/>
+        <h1 align="center">Bible Reference</h1>
+    </a>
+</p>
 
+
+<p align="center">
+    <img alt="NPM Version" src="https://img.shields.io/npm/v/%40biblebytes%2Fbible-reference"/>
+    <img src="https://github.com/BibleBytes/bible-reference/actions/workflows/testing.yml/badge.svg"/>
+</p>
+
+
+---
 ## Overview
 
 **Bible Reference Index** is a Christian Bible reference verse index and index validation system. It provides a standard way to index and reference verses in the Bible. The package is built to address the lack of a standard book abbreviation or Bible reference ID system. 
