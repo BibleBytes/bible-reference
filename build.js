@@ -12,6 +12,8 @@ function createBuildSettings(options) {
         entryPoints: entries,
         outfile: output,
         bundle: true,
+        format: "esm",
+        target: ["esnext"],
         plugins: [],
         ...options,
     };
