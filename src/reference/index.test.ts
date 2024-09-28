@@ -51,7 +51,7 @@ describe("Reference", () => {
         expect(ref.IsValid());
     });
 
-    it('Parse Numbers 5:6-8 "NUM 5:6-8")', () => {
+    it('Parse Numbers 5:6-8 ("NUM 5:6-8")', () => {
         const ref = new Reference(Language.English, "NUM 5:6-8");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Numbers);
@@ -63,7 +63,7 @@ describe("Reference", () => {
         expect(ref.IsValid());
     });
 
-    it('Parse Deuteronomy 10:12 "DEU 10:12")', () => {
+    it('Parse Deuteronomy 10:12 ("DEU 10:12")', () => {
         const ref = new Reference(Language.English, "DEU 10:12");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Deuteronomy);
@@ -75,19 +75,19 @@ describe("Reference", () => {
         expect(ref.IsValid());
     });
 
-    it('Parse Joshua 1:1-9 "JSH 1:1-9")', () => {
-        const ref = new Reference(Language.English, "JSH 1:1-9");
+    it('Parse Joshua 1:1-9 ("JOS 1:1-9")', () => {
+        const ref = new Reference(Language.English, "JOS 1:1-9");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Joshua);
         expect(ref.chapter).to.equal(1);
         expect(ref.verse).to.equal(1);
         expect(ref.verseEnd).to.equal(9);
-        expect(ref.toString()).to.equal("JSH:1:1:9");
+        expect(ref.toString()).to.equal("JOS:1:1:9");
         expect(ref.toString(true)).to.equal("Joshua 1:1-9");
         expect(ref.IsValid());
     });
 
-    it('Parse Judges 4:4-5 "JDG 4:4-5")', () => {
+    it('Parse Judges 4:4-5 ("JDG 4:4-5")', () => {
         const ref = new Reference(Language.English, "JDG 4:4-5");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Judges);
@@ -99,38 +99,38 @@ describe("Reference", () => {
         expect(ref.IsValid());
     });
 
-    it('Parse Ruth 2:8 "RTH 2:8")', () => {
-        const ref = new Reference(Language.English, "RTH 2:8");
+    it('Parse Ruth 2:8 ("RTH 2:8")', () => {
+        const ref = new Reference(Language.English, "RUT 2:8");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Ruth);
         expect(ref.chapter).to.equal(2);
         expect(ref.verse).to.equal(8);
         expect(ref.verseEnd).to.be.undefined;
-        expect(ref.toString()).to.equal("RTH:2:8");
+        expect(ref.toString()).to.equal("RUT:2:8");
         expect(ref.toString(true)).to.equal("Ruth 2:8");
         expect(ref.IsValid());
     });
 
-    it('Parse Psalms 23:1-6 ("PSM 23:1-6")', () => {
-        const ref = new Reference(Language.English, "PSM 23:1-6");
+    it('Parse Psalms 23:1-6 ("PSA 23:1-6")', () => {
+        const ref = new Reference(Language.English, "PSA 23:1-6");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Psalms);
         expect(ref.chapter).to.equal(23);
         expect(ref.verse).to.equal(1);
         expect(ref.verseEnd).to.equal(6);
-        expect(ref.toString()).to.equal("PSM:23:1:6");
+        expect(ref.toString()).to.equal("PSA:23:1:6");
         expect(ref.toString(true)).to.equal("Psalms 23:1-6");
         expect(ref.IsValid());
     });
 
-    it('Parse Proverbs 3:5-6 ("PRV 3:5-6")', () => {
-        const ref = new Reference(Language.English, "PRV 3:5-6");
+    it('Parse Proverbs 3:5-6 ("PRO 3:5-6")', () => {
+        const ref = new Reference(Language.English, "PRO 3:5-6");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Proverbs);
         expect(ref.chapter).to.equal(3);
         expect(ref.verse).to.equal(5);
         expect(ref.verseEnd).to.equal(6);
-        expect(ref.toString()).to.equal("PRV:3:5:6");
+        expect(ref.toString()).to.equal("PRO:3:5:6");
         expect(ref.toString(true)).to.equal("Proverbs 3:5-6");
         expect(ref.IsValid());
     });
@@ -303,14 +303,14 @@ describe("Reference", () => {
         expect(ref.IsValid());
     });
 
-    it('Parse Joshua 6:20 ("JSH:6:20")', () => {
-        const ref = new Reference(Language.English, "JSH:6:20");
+    it('Parse Joshua 6:20 ("JOS:6:20")', () => {
+        const ref = new Reference(Language.English, "JOS:6:20");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Joshua);
         expect(ref.chapter).to.equal(6);
         expect(ref.verse).to.equal(20);
         expect(ref.verseEnd).to.be.undefined;
-        expect(ref.toString()).to.equal("JSH:6:20");
+        expect(ref.toString()).to.equal("JOS:6:20");
         expect(ref.toString(true)).to.equal("Joshua 6:20");
         expect(ref.IsValid());
     });
@@ -327,26 +327,26 @@ describe("Reference", () => {
         expect(ref.IsValid());
     });
 
-    it('Parse Ruth 1:16 ("RTH.1.16")', () => {
-        const ref = new Reference(Language.English, "RTH.1.16");
+    it('Parse Ruth 1:16 ("RUT.1.16")', () => {
+        const ref = new Reference(Language.English, "RUT.1.16");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Ruth);
         expect(ref.chapter).to.equal(1);
         expect(ref.verse).to.equal(16);
         expect(ref.verseEnd).to.be.undefined;
-        expect(ref.toString()).to.equal("RTH:1:16");
+        expect(ref.toString()).to.equal("RUT:1:16");
         expect(ref.toString(true)).to.equal("Ruth 1:16");
         expect(ref.IsValid());
     });
 
-    it('Parse 1 Samuel 3:10-14 ("SAM1 3 10 14")', () => {
-        const ref = new Reference(Language.English, "SAM1 3 10 14");
+    it('Parse 1 Samuel 3:10-14 ("1SA 3 10 14")', () => {
+        const ref = new Reference(Language.English, "1SA 3 10 14");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Samuel1);
         expect(ref.chapter).to.equal(3);
         expect(ref.verse).to.equal(10);
         expect(ref.verseEnd).to.equal(14);
-        expect(ref.toString()).to.equal("SAM1:3:10:14");
+        expect(ref.toString()).to.equal("1SA:3:10:14");
         expect(ref.toString(true)).to.equal("1 Samuel 3:10-14");
         expect(ref.IsValid());
     });
@@ -387,14 +387,14 @@ describe("Reference", () => {
         expect(ref.IsValid());
     });
 
-    it('Parse 1 Corinthians 13:4-7 ("COR1-13-4-7")', () => {
-        const ref = new Reference(Language.English, "COR1-13-4-7");
+    it('Parse 1 Corinthians 13:4-7 ("1CO-13-4-7")', () => {
+        const ref = new Reference(Language.English, "1CO-13-4-7");
         expect(ref.language).to.equal(Language.English);
         expect(ref.book).to.equal(Book.Corinthians1);
         expect(ref.chapter).to.equal(13);
         expect(ref.verse).to.equal(4);
         expect(ref.verseEnd).to.equal(7);
-        expect(ref.toString()).to.equal("COR1:13:4:7");
+        expect(ref.toString()).to.equal("1CO:13:4:7");
         expect(ref.toString(true)).to.equal("1 Corinthians 13:4-7");
         expect(ref.IsValid());
     });
@@ -564,20 +564,20 @@ describe("Reference", () => {
         );
     });
 
-    it('Invalid chapter ("CHR1 0:1")', () => {
-        expect(() => new Reference(Language.English, "CHR1 0:1")).to.throw(
+    it('Invalid chapter ("1CH 0:1")', () => {
+        expect(() => new Reference(Language.English, "1CH 0:1")).to.throw(
             "Invalid reference: Invalid chapter",
         );
     });
 
-    it('Invalid chapter ("CHR1 30:29")', () => {
-        expect(() => new Reference(Language.English, "CHR1 30:29")).to.throw(
+    it('Invalid chapter ("1CH 30:29")', () => {
+        expect(() => new Reference(Language.English, "1CH 30:29")).to.throw(
             "Invalid reference: Invalid chapter",
         );
     });
 
-    it('Invalid chapter ("CHR1 999:1")', () => {
-        expect(() => new Reference(Language.English, "CHR1 999:1")).to.throw(
+    it('Invalid chapter ("1CH 999:1")', () => {
+        expect(() => new Reference(Language.English, "1CH 999:1")).to.throw(
             "Invalid reference: Invalid chapter",
         );
     });
@@ -599,8 +599,8 @@ describe("Reference", () => {
      * Add more invalid verses
      *
      */
-    it('Invalid verse ("SOS 1:100")', () => {
-        expect(() => new Reference(Language.English, "SOS 1:100")).to.throw(
+    it('Invalid verse ("SNG 1:100")', () => {
+        expect(() => new Reference(Language.English, "SNG 1:100")).to.throw(
             "Invalid reference: Invalid verse",
         );
     });
@@ -635,14 +635,14 @@ describe("Reference", () => {
         );
     });
 
-    it('Invalid verse range ("PSM 1:1-1000")', () => {
-        expect(() => new Reference(Language.English, "PSM 1:1-1000")).to.throw(
+    it('Invalid verse range ("PSA 1:1-1000")', () => {
+        expect(() => new Reference(Language.English, "PSA 1:1-1000")).to.throw(
             "Invalid reference: Invalid verse range",
         );
     });
 
-    it('Invalid verse range ("PRV 1:10-5")', () => {
-        expect(() => new Reference(Language.English, "PRV 1:10-5")).to.throw(
+    it('Invalid verse range ("PRO 1:10-5")', () => {
+        expect(() => new Reference(Language.English, "PRO 1:10-5")).to.throw(
             "Invalid reference: Invalid verse range",
         );
     });
@@ -695,8 +695,8 @@ describe("Reference", () => {
         );
     });
 
-    it('Invalid verse range ("JNA 1:1-50")', () => {
-        expect(() => new Reference(Language.English, "JNA 1:1-50")).to.throw(
+    it('Invalid verse range ("JON 1:1-50")', () => {
+        expect(() => new Reference(Language.English, "JON 1:1-50")).to.throw(
             "Invalid reference: Invalid verse range",
         );
     });
@@ -707,8 +707,8 @@ describe("Reference", () => {
         );
     });
 
-    it('Invalid verse range ("NAH 1:10-5")', () => {
-        expect(() => new Reference(Language.English, "NAH 1:10-5")).to.throw(
+    it('Invalid verse range ("NAM 1:10-5")', () => {
+        expect(() => new Reference(Language.English, "NAM 1:10-5")).to.throw(
             "Invalid reference: Invalid verse range",
         );
     });

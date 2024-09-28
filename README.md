@@ -33,50 +33,51 @@ npm install bible-reference-index
 
 ## Book IDs
 This table categorizes the books of the Bible into Old and New Testaments,
-providing their standard ID/abbreviations for easy reference.
+providing their standard ID/abbreviations according to the
+[Digital Bible Library USX Standard](https://app.thedigitalbiblelibrary.org/static/docs/usx/vocabularies.html).
 
-| Old Testament        | ID     | New Testament        | ID     |
-|----------------------|--------|----------------------|--------|
-| Genesis              | `GEN`  | Matthew              | `MAT`  |
-| Exodus               | `EXO`  | Mark                 | `MRK`  |
-| Leviticus            | `LEV`  | Luke                 | `LUK`  |
-| Numbers              | `NUM`  | John                 | `JHN`  |
-| Deuteronomy          | `DEU`  | Acts                 | `ACT`  |
-| Joshua               | `JSH`  | Romans               | `ROM`  |
-| Judges               | `JDG`  | 1 Corinthians        | `COR1` |
-| Ruth                 | `RTH`  | 2 Corinthians        | `COR2` |
-| 1 Samuel             | `SAM1` | Galatians            | `GAL`  |
-| 2 Samuel             | `SAM2` | Ephesians            | `EPH`  |
-| 1 Kings              | `KGS1` | Philippians          | `PHP`  |
-| 2 Kings              | `KGS2` | Colossians           | `COL`  |
-| 1 Chronicles         | `CHR1` | 1 Thessalonians      | `THE1` |
-| 2 Chronicles         | `CHR2` | 2 Thessalonians      | `THE2` |
-| Ezra                 | `EZR`  | 1 Timothy            | `TIM1` |
-| Nehemiah             | `NEH`  | 2 Timothy            | `TIM2` |
-| Esther               | `EST`  | Titus                | `TIT`  |
-| Job                  | `JOB`  | Philemon             | `PHM`  |
-| Psalms               | `PSM`  | Hebrews              | `HEB`  |
-| Proverbs             | `PRV`  | James                | `JAS`  |
-| Ecclesiastes         | `ECC`  | 1 Peter              | `PET1` |
-| Song of Solomon      | `SOS`  | 2 Peter              | `PET2` |
-| Isaiah               | `ISA`  | 1 John               | `JHN1` |
-| Jeremiah             | `JER`  | 2 John               | `JHN2` |
-| Lamentations         | `LAM`  | 3 John               | `JHN3` |
-| Ezekiel              | `EZK`  | Jude                 | `JUD`  |
-| Daniel               | `DAN`  | Revelation           | `REV`  |
-| Hosea                | `HOS`  |                      |        |
-| Joel                 | `JOL`  |                      |        |
-| Amos                 | `AMS`  |                      |        |
-| Obadiah              | `OBA`  |                      |        |
-| Jonah                | `JNA`  |                      |        |
-| Micah                | `MIC`  |                      |        |
-| Nahum                | `NAH`  |                      |        |
-| Habakkuk             | `HAB`  |                      |        |
-| Zephaniah            | `ZEP`  |                      |        |
-| Haggai               | `HAG`  |                      |        |
-| Zechariah            | `ZEC`  |                      |        |
-| Malachi              | `MAL`  |                      |        |
 
+| Old Testament        | ID    | New Testament        | ID    |
+|----------------------|-------|----------------------|-------|
+| Genesis              | `GEN` | Matthew              | `MAT` |
+| Exodus               | `EXO` | Mark                 | `MRK` |
+| Leviticus            | `LEV` | Luke                 | `LUK` |
+| Numbers              | `NUM` | John                 | `JHN` |
+| Deuteronomy          | `DEU` | Acts                 | `ACT` |
+| Joshua               | `JOS` | Romans               | `ROM` |
+| Judges               | `JDG` | 1 Corinthians        | `1CO` |
+| Ruth                 | `RUT` | 2 Corinthians        | `2CO` |
+| 1 Samuel             | `1SA` | Galatians            | `GAL` |
+| 2 Samuel             | `2SA` | Ephesians            | `EPH` |
+| 1 Kings              | `1KI` | Philippians          | `PHP` |
+| 2 Kings              | `2KI` | Colossians           | `COL` |
+| 1 Chronicles         | `1CH` | 1 Thessalonians      | `1TH` |
+| 2 Chronicles         | `2CH` | 2 Thessalonians      | `2TH` |
+| Ezra                 | `EZR` | 1 Timothy            | `1TI` |
+| Nehemiah             | `NEH` | 2 Timothy            | `2TI` |
+| Esther               | `EST` | Titus                | `TIT` |
+| Job                  | `JOB` | Philemon             | `PHM` |
+| Psalms               | `PSA` | Hebrews              | `HEB` |
+| Proverbs             | `PRO` | James                | `JAS` |
+| Ecclesiastes         | `ECC` | 1 Peter              | `1PE` |
+| Song of Songs        | `SNG` | 2 Peter              | `2PE` |
+| Isaiah               | `ISA` | 1 John               | `1JN` |
+| Jeremiah             | `JER` | 2 John               | `2JN` |
+| Lamentations         | `LAM` | 3 John               | `3JN` |
+| Ezekiel              | `EZK` | Jude                 | `JUD` |
+| Daniel               | `DAN` | Revelation           | `REV` |
+| Hosea                | `HOS` |                      |       |
+| Joel                 | `JOL` |                      |       |
+| Amos                 | `AMO` |                      |       |
+| Obadiah              | `OBA` |                      |       |
+| Jonah                | `JON` |                      |       |
+| Micah                | `MIC` |                      |       |
+| Nahum                | `NAM` |                      |       |
+| Habakkuk             | `HAB` |                      |       |
+| Zephaniah            | `ZEP` |                      |       |
+| Haggai               | `HAG` |                      |       |
+| Zechariah            | `ZEC` |                      |       |
+| Malachi              | `MAL` |                      |       |
 
 <br/>
 
