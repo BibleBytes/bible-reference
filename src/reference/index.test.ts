@@ -449,7 +449,12 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(1);
         expect(ref.toString()).to.equal("INVALID");
         expect(ref.toString(true)).to.equal("INVALID");
-        expect(ref.IsValid()).to.be.false;
+        expect(ref.IsValid()).to.not.be.undefined;
+    });
+
+    it("Set to Invalid Genesis 1:2-1", () => {
+        const ref = new Reference(Language.English, "GEN 1:1");
+        expect(() => ref.Set("GEN:1:2:1")).to.throw();
     });
 
     it('Invalid format ("FOO-BAR")', () => {
@@ -548,49 +553,49 @@ describe("Reference", () => {
 
     it('Invalid chapter ("GEN 0:1")', () => {
         expect(() => new Reference(Language.English, "GEN 0:1")).to.throw(
-            "Invalid reference: Invalid chapter",
+            "Invalid chapter number for Genesis",
         );
     });
 
     it('Invalid chapter ("GEN 51:1")', () => {
         expect(() => new Reference(Language.English, "GEN 51:1")).to.throw(
-            "Invalid reference: Invalid chapter",
+            "Invalid chapter number for Genesis",
         );
     });
 
     it('Invalid chapter ("GEN 100:1")', () => {
         expect(() => new Reference(Language.English, "GEN 100:1")).to.throw(
-            "Invalid reference: Invalid chapter",
+            "Invalid chapter number for Genesis",
         );
     });
 
     it('Invalid chapter ("1CH 0:1")', () => {
         expect(() => new Reference(Language.English, "1CH 0:1")).to.throw(
-            "Invalid reference: Invalid chapter",
+            "Invalid chapter number for 1 Chronicles",
         );
     });
 
     it('Invalid chapter ("1CH 30:29")', () => {
         expect(() => new Reference(Language.English, "1CH 30:29")).to.throw(
-            "Invalid reference: Invalid chapter",
+            "Invalid chapter number for 1 Chronicles",
         );
     });
 
     it('Invalid chapter ("1CH 999:1")', () => {
         expect(() => new Reference(Language.English, "1CH 999:1")).to.throw(
-            "Invalid reference: Invalid chapter",
+            "Invalid chapter number for 1 Chronicles",
         );
     });
 
     it('Invalid chapter ("EXO 7:0")', () => {
         expect(() => new Reference(Language.English, "EXO 7:0")).to.throw(
-            "Invalid reference: Invalid verse",
+            "Invalid verse number for Exodus 7",
         );
     });
 
     it('Invalid verse ("EXO 7:14")', () => {
         expect(() => new Reference(Language.English, "EXO 7:26")).to.throw(
-            "Invalid reference: Invalid verse",
+            "Invalid verse number for Exodus 7",
         );
     });
 
@@ -601,121 +606,121 @@ describe("Reference", () => {
      */
     it('Invalid verse ("SNG 1:100")', () => {
         expect(() => new Reference(Language.English, "SNG 1:100")).to.throw(
-            "Invalid reference: Invalid verse",
+            "Invalid verse number for Song of Songs 1",
         );
     });
 
     it('Invalid verse ("JOB 1:1000")', () => {
         expect(() => new Reference(Language.English, "JOB 1:1000")).to.throw(
-            "Invalid reference: Invalid verse",
+            "Invalid verse number for Job 1",
         );
     });
 
     it('Invalid verse ("DAN 1:300-301")', () => {
         expect(() => new Reference(Language.English, "DAN 1:300-301")).to.throw(
-            "Invalid reference: Invalid verse",
+            "Invalid verse number for Daniel 1",
         );
     });
 
     it('Invalid verse range ("LEV 10:12-11")', () => {
         expect(() => new Reference(Language.English, "LEV 10:12-11")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Leviticus 10:12",
         );
     });
 
     it('Invalid verse range ("LEV 1:1-100")', () => {
         expect(() => new Reference(Language.English, "LEV 1:1-100")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Leviticus 1:1",
         );
     });
 
     it('Invalid verse range ("JOB 1:6-5")', () => {
         expect(() => new Reference(Language.English, "JOB 1:6-5")).to.throw(
-            "Invalid reference: Invalid verse",
+            "Invalid verse end number for Job 1:6",
         );
     });
 
     it('Invalid verse range ("PSA 1:1-1000")', () => {
         expect(() => new Reference(Language.English, "PSA 1:1-1000")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Psalms 1:1",
         );
     });
 
     it('Invalid verse range ("PRO 1:10-5")', () => {
         expect(() => new Reference(Language.English, "PRO 1:10-5")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Proverbs 1:10",
         );
     });
 
     it('Invalid verse range ("ISA 1:1-100")', () => {
         expect(() => new Reference(Language.English, "ISA 1:1-100")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Isaiah 1:1",
         );
     });
 
     it('Invalid verse range ("JER 1:1-1")', () => {
         expect(() => new Reference(Language.English, "JER 1:1-1")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Jeremiah 1:1",
         );
     });
 
     it('Invalid verse range ("LAM 1:10-5")', () => {
         expect(() => new Reference(Language.English, "LAM 1:10-5")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Lamentations 1:10",
         );
     });
 
     it('Invalid verse range ("EZK 1:10-5")', () => {
         expect(() => new Reference(Language.English, "EZK 1:10-5")).to.throw(
-            "Invalid reference: Invalid verse",
+            "Invalid verse end number for Ezekiel 1:10",
         );
     });
 
     it('Invalid verse range ("HOS 1:3-3")', () => {
         expect(() => new Reference(Language.English, "HOS 1:3-3")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Hosea 1:3",
         );
     });
 
     it('Invalid verse range ("HOS 1:1-300")', () => {
         expect(() => new Reference(Language.English, "HOS 1:1-300")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Hosea 1:1",
         );
     });
 
     it('Invalid verse range ("JOL 1:10-2")', () => {
         expect(() => new Reference(Language.English, "JOL 1:10-2")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Joel 1:10",
         );
     });
 
     it('Invalid verse range ("OBA 1:50")', () => {
         expect(() => new Reference(Language.English, "OBA 1:50")).to.throw(
-            "Invalid reference: Invalid verse",
+            "Invalid verse number for Obadiah 1",
         );
     });
 
     it('Invalid verse range ("JON 1:1-50")', () => {
         expect(() => new Reference(Language.English, "JON 1:1-50")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Jonah 1:1",
         );
     });
 
     it('Invalid verse range ("MIC 1:1-17")', () => {
         expect(() => new Reference(Language.English, "MIC 1:1-17")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Micah 1:1",
         );
     });
 
     it('Invalid verse range ("NAM 1:10-5")', () => {
         expect(() => new Reference(Language.English, "NAM 1:10-5")).to.throw(
-            "Invalid reference: Invalid verse range",
+            "Invalid verse end number for Nahum 1:10",
         );
     });
 
     it('Invalid verse range ("HAB 1:15-5")', () => {
         expect(() => new Reference(Language.English, "HAB 1:15-5")).to.throw(
-            "Invalid reference: Invalid verse",
+            "Invalid verse end number for Habakkuk 1:15",
         );
     });
 });

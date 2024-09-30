@@ -10,15 +10,8 @@
  *
  */
 
-import {
-    type Book,
-    Books,
-    type Language,
-    Metadata,
-} from "../../resources/index.js";
+import { type Book, Books, type Language } from "../../resources/index.js";
 import { GetBook } from "../book/index.js";
-
-const REF_FORMAT_REGEX = /^[A-Z]{3}([0-9])?([,:\-\s\.]([0-9]){1,3}){2,3}$/;
 
 export class Reference {
     public language: Language;
@@ -42,10 +35,6 @@ export class Reference {
         this.language = language;
         if (reference) {
             this.Set(reference);
-            const error = this.GetError();
-            if (error !== undefined) {
-                throw new Error(`Invalid reference: ${error}`);
-            }
         }
     }
 
@@ -64,40 +53,35 @@ export class Reference {
         this.chapter = chapter;
         this.verse = verse;
         this.verseEnd = verseEnd;
-    }
-
-    /**
-     * Checks if the reference is valid. Checking to ensure the verse and end
-     * of the verse range are valid.
-     * @returns {boolean} True if the reference is valid, otherwise false.
-     */
-    public IsValid(): boolean {
-        return this.GetError() === undefined;
+        const error = this.IsValid();
+        if (error !== undefined) {
+            throw new Error(error);
+        }
     }
 
     /**
      * Gets the error message if the reference is invalid.
      * @returns {string | undefined} The error message if invalid, otherwise undefined.
      */
-    public GetError(): string | undefined {
+    public IsValid(): string | undefined {
         const bookMetadata = GetBook(this.language, this.book);
         if (!bookMetadata) {
-            return "Invalid book";
+            return `Invalid book "${this.book}"`;
         }
 
         const chapterIndex = this.chapter - 1;
         if (chapterIndex < 0 || chapterIndex >= bookMetadata.chapters.length) {
-            return "Invalid chapter";
+            return `Invalid chapter number for ${bookMetadata.name}`;
         }
 
         const maxVerses = bookMetadata.chapters[chapterIndex];
         if (this.verse < 1 || this.verse > maxVerses) {
-            return "Invalid verse";
+            return `Invalid verse number for ${bookMetadata.name} ${this.chapter}`;
         }
 
         if (this.verseEnd !== undefined) {
             if (this.verseEnd <= this.verse || this.verseEnd > maxVerses) {
-                return "Invalid verse range";
+                return `Invalid verse end number for ${bookMetadata.name} ${this.chapter}:${this.verse}`;
             }
         }
 
@@ -114,7 +98,7 @@ export class Reference {
      * ref.toString(true); // "MAT 5:9-10"
      */
     public toString(pretty?: boolean): string {
-        if (!this.IsValid()) {
+        if (this.IsValid() !== undefined) {
             return "INVALID";
         }
         if (pretty) {
