@@ -24,7 +24,7 @@
 ## Installation
 To install the package via npm, run:
 ```bash
-npm install bible-reference-index
+npm i @biblebytes/bible-reference
 ```
 
 
