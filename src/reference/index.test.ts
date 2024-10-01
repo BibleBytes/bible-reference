@@ -9,6 +9,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Genesis);
         expect(ref.chapter).to.equal(1);
         expect(ref.verse).to.equal(1);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("GEN:1:1");
         expect(ref.toString(true)).to.equal("Genesis 1:1");
@@ -21,6 +22,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Genesis);
         expect(ref.chapter).to.equal(1);
         expect(ref.verse).to.equal(1);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("GEN:1:1");
         expect(ref.toString(true)).to.equal("Genesis 1:1");
@@ -33,6 +35,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Exodus);
         expect(ref.chapter).to.equal(2);
         expect(ref.verse).to.equal(5);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(10);
         expect(ref.toString()).to.equal("EXO:2:5:10");
         expect(ref.toString(true)).to.equal("Exodus 2:5-10");
@@ -45,6 +48,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Leviticus);
         expect(ref.chapter).to.equal(3);
         expect(ref.verse).to.equal(15);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("LEV:3:15");
         expect(ref.toString(true)).to.equal("Leviticus 3:15");
@@ -57,6 +61,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Numbers);
         expect(ref.chapter).to.equal(5);
         expect(ref.verse).to.equal(6);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(8);
         expect(ref.toString()).to.equal("NUM:5:6:8");
         expect(ref.toString(true)).to.equal("Numbers 5:6-8");
@@ -69,6 +74,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Deuteronomy);
         expect(ref.chapter).to.equal(10);
         expect(ref.verse).to.equal(12);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("DEU:10:12");
         expect(ref.toString(true)).to.equal("Deuteronomy 10:12");
@@ -81,6 +87,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Joshua);
         expect(ref.chapter).to.equal(1);
         expect(ref.verse).to.equal(1);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(9);
         expect(ref.toString()).to.equal("JOS:1:1:9");
         expect(ref.toString(true)).to.equal("Joshua 1:1-9");
@@ -93,6 +100,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Judges);
         expect(ref.chapter).to.equal(4);
         expect(ref.verse).to.equal(4);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(5);
         expect(ref.toString()).to.equal("JDG:4:4:5");
         expect(ref.toString(true)).to.equal("Judges 4:4-5");
@@ -105,6 +113,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Ruth);
         expect(ref.chapter).to.equal(2);
         expect(ref.verse).to.equal(8);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("RUT:2:8");
         expect(ref.toString(true)).to.equal("Ruth 2:8");
@@ -117,6 +126,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Psalms);
         expect(ref.chapter).to.equal(23);
         expect(ref.verse).to.equal(1);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(6);
         expect(ref.toString()).to.equal("PSA:23:1:6");
         expect(ref.toString(true)).to.equal("Psalms 23:1-6");
@@ -129,6 +139,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Proverbs);
         expect(ref.chapter).to.equal(3);
         expect(ref.verse).to.equal(5);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(6);
         expect(ref.toString()).to.equal("PRO:3:5:6");
         expect(ref.toString(true)).to.equal("Proverbs 3:5-6");
@@ -141,6 +152,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Isaiah);
         expect(ref.chapter).to.equal(9);
         expect(ref.verse).to.equal(6);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("ISA:9:6");
         expect(ref.toString(true)).to.equal("Isaiah 9:6");
@@ -153,6 +165,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Matthew);
         expect(ref.chapter).to.equal(5);
         expect(ref.verse).to.equal(3);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(12);
         expect(ref.toString()).to.equal("MAT:5:3:12");
         expect(ref.toString(true)).to.equal("Matthew 5:3-12");
@@ -165,6 +178,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.John);
         expect(ref.chapter).to.equal(3);
         expect(ref.verse).to.equal(16);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("JHN:3:16");
         expect(ref.toString(true)).to.equal("John 3:16");
@@ -177,6 +191,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Romans);
         expect(ref.chapter).to.equal(8);
         expect(ref.verse).to.equal(28);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(30);
         expect(ref.toString()).to.equal("ROM:8:28:30");
         expect(ref.toString(true)).to.equal("Romans 8:28-30");
@@ -189,6 +204,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Revelation);
         expect(ref.chapter).to.equal(22);
         expect(ref.verse).to.equal(13);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("REV:22:13");
         expect(ref.toString(true)).to.equal("Revelation 22:13");
@@ -201,6 +217,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Isaiah);
         expect(ref.chapter).to.equal(9);
         expect(ref.verse).to.equal(6);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(7);
         expect(ref.toString()).to.equal("ISA:9:6:7");
         expect(ref.toString(true)).to.equal("Isaiah 9:6-7");
@@ -213,6 +230,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Jeremiah);
         expect(ref.chapter).to.equal(29);
         expect(ref.verse).to.equal(11);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("JER:29:11");
         expect(ref.toString(true)).to.equal("Jeremiah 29:11");
@@ -225,6 +243,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Lamentations);
         expect(ref.chapter).to.equal(3);
         expect(ref.verse).to.equal(22);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(23);
         expect(ref.toString()).to.equal("LAM:3:22:23");
         expect(ref.toString(true)).to.equal("Lamentations 3:22-23");
@@ -237,6 +256,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Ezekiel);
         expect(ref.chapter).to.equal(37);
         expect(ref.verse).to.equal(4);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("EZK:37:4");
         expect(ref.toString(true)).to.equal("Ezekiel 37:4");
@@ -249,6 +269,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Genesis);
         expect(ref.chapter).to.equal(3);
         expect(ref.verse).to.equal(15);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("GEN:3:15");
         expect(ref.toString(true)).to.equal("Genesis 3:15");
@@ -261,6 +282,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Exodus);
         expect(ref.chapter).to.equal(4);
         expect(ref.verse).to.equal(12);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(16);
         expect(ref.toString()).to.equal("EXO:4:12:16");
         expect(ref.toString(true)).to.equal("Exodus 4:12-16");
@@ -273,6 +295,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Leviticus);
         expect(ref.chapter).to.equal(5);
         expect(ref.verse).to.equal(6);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("LEV:5:6");
         expect(ref.toString(true)).to.equal("Leviticus 5:6");
@@ -285,6 +308,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Numbers);
         expect(ref.chapter).to.equal(7);
         expect(ref.verse).to.equal(9);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(10);
         expect(ref.toString()).to.equal("NUM:7:9:10");
         expect(ref.toString(true)).to.equal("Numbers 7:9-10");
@@ -297,6 +321,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Deuteronomy);
         expect(ref.chapter).to.equal(8);
         expect(ref.verse).to.equal(3);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("DEU:8:3");
         expect(ref.toString(true)).to.equal("Deuteronomy 8:3");
@@ -309,6 +334,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Joshua);
         expect(ref.chapter).to.equal(6);
         expect(ref.verse).to.equal(20);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("JOS:6:20");
         expect(ref.toString(true)).to.equal("Joshua 6:20");
@@ -321,6 +347,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Judges);
         expect(ref.chapter).to.equal(7);
         expect(ref.verse).to.equal(7);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(9);
         expect(ref.toString()).to.equal("JDG:7:7:9");
         expect(ref.toString(true)).to.equal("Judges 7:7-9");
@@ -333,6 +360,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Ruth);
         expect(ref.chapter).to.equal(1);
         expect(ref.verse).to.equal(16);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("RUT:1:16");
         expect(ref.toString(true)).to.equal("Ruth 1:16");
@@ -345,6 +373,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Samuel1);
         expect(ref.chapter).to.equal(3);
         expect(ref.verse).to.equal(10);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(14);
         expect(ref.toString()).to.equal("1SA:3:10:14");
         expect(ref.toString(true)).to.equal("1 Samuel 3:10-14");
@@ -357,6 +386,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Matthew);
         expect(ref.chapter).to.equal(5);
         expect(ref.verse).to.equal(6);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(7);
         expect(ref.toString()).to.equal("MAT:5:6:7");
         expect(ref.toString(true)).to.equal("Matthew 5:6-7");
@@ -369,6 +399,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.John);
         expect(ref.chapter).to.equal(3);
         expect(ref.verse).to.equal(16);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("JHN:3:16");
         expect(ref.toString(true)).to.equal("John 3:16");
@@ -381,6 +412,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Romans);
         expect(ref.chapter).to.equal(8);
         expect(ref.verse).to.equal(28);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(30);
         expect(ref.toString()).to.equal("ROM:8:28:30");
         expect(ref.toString(true)).to.equal("Romans 8:28-30");
@@ -393,6 +425,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Corinthians1);
         expect(ref.chapter).to.equal(13);
         expect(ref.verse).to.equal(4);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(7);
         expect(ref.toString()).to.equal("1CO:13:4:7");
         expect(ref.toString(true)).to.equal("1 Corinthians 13:4-7");
@@ -405,6 +438,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Revelation);
         expect(ref.chapter).to.equal(22);
         expect(ref.verse).to.equal(13);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("REV:22:13");
         expect(ref.toString(true)).to.equal("Revelation 22:13");
@@ -418,6 +452,7 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Genesis);
         expect(ref.chapter).to.equal(1);
         expect(ref.verse).to.equal(2);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("GEN:1:2");
         expect(ref.toString(true)).to.equal("Genesis 1:2");
@@ -432,9 +467,39 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Genesis);
         expect(ref.chapter).to.equal(1);
         expect(ref.verse).to.equal(2);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(5);
         expect(ref.toString()).to.equal("GEN:1:2:5");
         expect(ref.toString(true)).to.equal("Genesis 1:2-5");
+        expect(ref.IsValid());
+    });
+
+    it("Set to Genesis 1:2-5:1", () => {
+        const ref = new Reference(Language.English, "GEN 1:1");
+        ref.verse = 2;
+        ref.chapterEnd = 5;
+        ref.verseEnd = 2;
+        expect(ref.language).to.equal(Language.English);
+        expect(ref.book).to.equal(Book.Genesis);
+        expect(ref.chapter).to.equal(1);
+        expect(ref.verse).to.equal(2);
+        expect(ref.chapterEnd).to.equal(5);
+        expect(ref.verseEnd).to.equal(2);
+        expect(ref.toString()).to.equal("GEN:1:2:5:2");
+        expect(ref.toString(true)).to.equal("Genesis 1:2-5:2");
+        expect(ref.IsValid());
+    });
+
+    it('Parse 1 Corinthians 13:4-16:24 ("1CO-13-4-16-24")', () => {
+        const ref = new Reference(Language.English, "1CO-13-4-16-24");
+        expect(ref.language).to.equal(Language.English);
+        expect(ref.book).to.equal(Book.Corinthians1);
+        expect(ref.chapter).to.equal(13);
+        expect(ref.verse).to.equal(4);
+        expect(ref.chapterEnd).to.equal(16);
+        expect(ref.verseEnd).to.equal(24);
+        expect(ref.toString()).to.equal("1CO:13:4:16:24");
+        expect(ref.toString(true)).to.equal("1 Corinthians 13:4-16:24");
         expect(ref.IsValid());
     });
 
@@ -446,10 +511,30 @@ describe("Reference", () => {
         expect(ref.book).to.equal(Book.Genesis);
         expect(ref.chapter).to.equal(1);
         expect(ref.verse).to.equal(2);
+        expect(ref.chapterEnd).to.be.undefined;
         expect(ref.verseEnd).to.equal(1);
         expect(ref.toString()).to.equal("INVALID");
         expect(ref.toString(true)).to.equal("INVALID");
         expect(ref.IsValid()).to.not.be.undefined;
+    });
+
+    it("Set Chapter end but no verse end", () => {
+        const ref = new Reference(Language.English, "GEN 1:1");
+        ref.verse = 2;
+        ref.chapterEnd = 2;
+        expect(ref.IsValid()).to.be.equal("Missing verse end number");
+    });
+
+    it('Invalid Verse end ("1CO-13-4-16-25")', () => {
+        expect(
+            () => new Reference(Language.English, "1CO-13-4-16-25"),
+        ).to.throw("Invalid verse end number");
+    });
+
+    it('Invalid Verse end ("1CO-13-4-17-25")', () => {
+        expect(
+            () => new Reference(Language.English, "1CO-13-4-17-25"),
+        ).to.throw("Invalid chapter end number");
     });
 
     it("Set to Invalid Genesis 1:2-1", () => {
@@ -497,8 +582,10 @@ describe("Reference", () => {
         expect(() => new Reference(Language.English, "GEN 1::")).to.throw();
     });
 
-    it('Invalid format ("GEN 1:1:2:3")', () => {
-        expect(() => new Reference(Language.English, "GEN 1:1:2:3")).to.throw();
+    it('Invalid format ("GEN 1:1:2:3:2")', () => {
+        expect(
+            () => new Reference(Language.English, "GEN 1:1:2:3:2"),
+        ).to.throw();
     });
 
     it('Invalid format ("GEN111")', () => {
@@ -553,174 +640,169 @@ describe("Reference", () => {
 
     it('Invalid chapter ("GEN 0:1")', () => {
         expect(() => new Reference(Language.English, "GEN 0:1")).to.throw(
-            "Invalid chapter number for Genesis",
+            "Invalid chapter number",
         );
     });
 
     it('Invalid chapter ("GEN 51:1")', () => {
         expect(() => new Reference(Language.English, "GEN 51:1")).to.throw(
-            "Invalid chapter number for Genesis",
+            "Invalid chapter number",
         );
     });
 
     it('Invalid chapter ("GEN 100:1")', () => {
         expect(() => new Reference(Language.English, "GEN 100:1")).to.throw(
-            "Invalid chapter number for Genesis",
+            "Invalid chapter number",
         );
     });
 
     it('Invalid chapter ("1CH 0:1")', () => {
         expect(() => new Reference(Language.English, "1CH 0:1")).to.throw(
-            "Invalid chapter number for 1 Chronicles",
+            "Invalid chapter number",
         );
     });
 
     it('Invalid chapter ("1CH 30:29")', () => {
         expect(() => new Reference(Language.English, "1CH 30:29")).to.throw(
-            "Invalid chapter number for 1 Chronicles",
+            "Invalid chapter number",
         );
     });
 
     it('Invalid chapter ("1CH 999:1")', () => {
         expect(() => new Reference(Language.English, "1CH 999:1")).to.throw(
-            "Invalid chapter number for 1 Chronicles",
+            "Invalid chapter number",
         );
     });
 
-    it('Invalid chapter ("EXO 7:0")', () => {
+    it('Invalid verse ("EXO 7:0")', () => {
         expect(() => new Reference(Language.English, "EXO 7:0")).to.throw(
-            "Invalid verse number for Exodus 7",
+            "Invalid verse number",
         );
     });
 
     it('Invalid verse ("EXO 7:14")', () => {
         expect(() => new Reference(Language.English, "EXO 7:26")).to.throw(
-            "Invalid verse number for Exodus 7",
+            "Invalid verse number",
         );
     });
 
-    /**
-     *
-     * Add more invalid verses
-     *
-     */
     it('Invalid verse ("SNG 1:100")', () => {
         expect(() => new Reference(Language.English, "SNG 1:100")).to.throw(
-            "Invalid verse number for Song of Songs 1",
+            "Invalid verse number",
         );
     });
 
     it('Invalid verse ("JOB 1:1000")', () => {
         expect(() => new Reference(Language.English, "JOB 1:1000")).to.throw(
-            "Invalid verse number for Job 1",
+            "Invalid verse number",
         );
     });
 
     it('Invalid verse ("DAN 1:300-301")', () => {
         expect(() => new Reference(Language.English, "DAN 1:300-301")).to.throw(
-            "Invalid verse number for Daniel 1",
+            "Invalid verse number",
         );
     });
 
-    it('Invalid verse range ("LEV 10:12-11")', () => {
+    it('Invalid verse end ("LEV 10:12-11")', () => {
         expect(() => new Reference(Language.English, "LEV 10:12-11")).to.throw(
-            "Invalid verse end number for Leviticus 10:12",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("LEV 1:1-100")', () => {
+    it('Invalid verse end ("LEV 1:1-100")', () => {
         expect(() => new Reference(Language.English, "LEV 1:1-100")).to.throw(
-            "Invalid verse end number for Leviticus 1:1",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("JOB 1:6-5")', () => {
+    it('Invalid verse end ("JOB 1:6-5")', () => {
         expect(() => new Reference(Language.English, "JOB 1:6-5")).to.throw(
-            "Invalid verse end number for Job 1:6",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("PSA 1:1-1000")', () => {
+    it('Invalid verse end ("PSA 1:1-1000")', () => {
         expect(() => new Reference(Language.English, "PSA 1:1-1000")).to.throw(
-            "Invalid verse end number for Psalms 1:1",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("PRO 1:10-5")', () => {
+    it('Invalid verse end ("PRO 1:10-5")', () => {
         expect(() => new Reference(Language.English, "PRO 1:10-5")).to.throw(
-            "Invalid verse end number for Proverbs 1:10",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("ISA 1:1-100")', () => {
+    it('Invalid verse end ("ISA 1:1-100")', () => {
         expect(() => new Reference(Language.English, "ISA 1:1-100")).to.throw(
-            "Invalid verse end number for Isaiah 1:1",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("JER 1:1-1")', () => {
+    it('Invalid verse end ("JER 1:1-1")', () => {
         expect(() => new Reference(Language.English, "JER 1:1-1")).to.throw(
-            "Invalid verse end number for Jeremiah 1:1",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("LAM 1:10-5")', () => {
+    it('Invalid verse end ("LAM 1:10-5")', () => {
         expect(() => new Reference(Language.English, "LAM 1:10-5")).to.throw(
-            "Invalid verse end number for Lamentations 1:10",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("EZK 1:10-5")', () => {
+    it('Invalid verse end ("EZK 1:10-5")', () => {
         expect(() => new Reference(Language.English, "EZK 1:10-5")).to.throw(
-            "Invalid verse end number for Ezekiel 1:10",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("HOS 1:3-3")', () => {
+    it('Invalid verse end ("HOS 1:3-3")', () => {
         expect(() => new Reference(Language.English, "HOS 1:3-3")).to.throw(
-            "Invalid verse end number for Hosea 1:3",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("HOS 1:1-300")', () => {
+    it('Invalid verse end ("HOS 1:1-300")', () => {
         expect(() => new Reference(Language.English, "HOS 1:1-300")).to.throw(
-            "Invalid verse end number for Hosea 1:1",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("JOL 1:10-2")', () => {
+    it('Invalid verse end ("JOL 1:10-2")', () => {
         expect(() => new Reference(Language.English, "JOL 1:10-2")).to.throw(
-            "Invalid verse end number for Joel 1:10",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("OBA 1:50")', () => {
+    it('Invalid verse ("OBA 1:50")', () => {
         expect(() => new Reference(Language.English, "OBA 1:50")).to.throw(
-            "Invalid verse number for Obadiah 1",
+            "Invalid verse number",
         );
     });
 
-    it('Invalid verse range ("JON 1:1-50")', () => {
+    it('Invalid verse end ("JON 1:1-50")', () => {
         expect(() => new Reference(Language.English, "JON 1:1-50")).to.throw(
-            "Invalid verse end number for Jonah 1:1",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("MIC 1:1-17")', () => {
+    it('Invalid verse end ("MIC 1:1-17")', () => {
         expect(() => new Reference(Language.English, "MIC 1:1-17")).to.throw(
-            "Invalid verse end number for Micah 1:1",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("NAM 1:10-5")', () => {
+    it('Invalid verse end ("NAM 1:10-5")', () => {
         expect(() => new Reference(Language.English, "NAM 1:10-5")).to.throw(
-            "Invalid verse end number for Nahum 1:10",
+            "Invalid verse end number",
         );
     });
 
-    it('Invalid verse range ("HAB 1:15-5")', () => {
+    it('Invalid verse end ("HAB 1:15-5")', () => {
         expect(() => new Reference(Language.English, "HAB 1:15-5")).to.throw(
-            "Invalid verse end number for Habakkuk 1:15",
+            "Invalid verse end number",
         );
     });
 });

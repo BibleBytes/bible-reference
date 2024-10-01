@@ -18,6 +18,7 @@ export class Reference {
     public book: Book = Books[0];
     public chapter = 1;
     public verse = 1;
+    public chapterEnd?: number;
     public verseEnd?: number;
 
     /**
@@ -48,10 +49,12 @@ export class Reference {
      * ref.Set("REV 21:3-4");
      */
     public Set(reference: string) {
-        const [book, chapter, verse, verseEnd] = this.Parse(reference);
+        const [book, chapter, verse, chapterEnd, verseEnd] =
+            this.Parse(reference);
         this.book = book;
         this.chapter = chapter;
         this.verse = verse;
+        this.chapterEnd = chapterEnd;
         this.verseEnd = verseEnd;
         const error = this.IsValid();
         if (error !== undefined) {
@@ -66,22 +69,48 @@ export class Reference {
     public IsValid(): string | undefined {
         const bookMetadata = GetBook(this.language, this.book);
         if (!bookMetadata) {
-            return `Invalid book "${this.book}"`;
+            return "Invalid book";
         }
 
-        const chapterIndex = this.chapter - 1;
-        if (chapterIndex < 0 || chapterIndex >= bookMetadata.chapters.length) {
-            return `Invalid chapter number for ${bookMetadata.name}`;
+        const chapterIndexStart = this.chapter - 1;
+        const lastVerseStart = bookMetadata.chapters[chapterIndexStart];
+        if (
+            chapterIndexStart < 0 ||
+            chapterIndexStart >= bookMetadata.chapters.length
+        ) {
+            return "Invalid chapter number";
         }
 
-        const maxVerses = bookMetadata.chapters[chapterIndex];
-        if (this.verse < 1 || this.verse > maxVerses) {
-            return `Invalid verse number for ${bookMetadata.name} ${this.chapter}`;
+        if (this.verse < 1 || this.verse > lastVerseStart) {
+            return "Invalid verse number";
         }
 
-        if (this.verseEnd !== undefined) {
-            if (this.verseEnd <= this.verse || this.verseEnd > maxVerses) {
-                return `Invalid verse end number for ${bookMetadata.name} ${this.chapter}:${this.verse}`;
+        if (this.chapterEnd !== undefined) {
+            const chapterIndexEnd = this.chapterEnd - 1;
+            const lastVerseEnd = bookMetadata.chapters[chapterIndexEnd];
+            if (
+                this.chapterEnd <= this.chapter ||
+                chapterIndexEnd >= bookMetadata.chapters.length
+            ) {
+                return "Invalid chapter end number";
+            }
+
+            if (this.verseEnd !== undefined) {
+                if (this.verse < 1 || this.verseEnd > lastVerseEnd) {
+                    console.log(this.verseEnd, lastVerseEnd);
+                    return "Invalid verse end number";
+                }
+            } else {
+                return "Missing verse end number";
+            }
+        } else {
+            if (this.verseEnd !== undefined) {
+                if (
+                    this.verseEnd <= this.verse ||
+                    this.verseEnd > lastVerseStart
+                ) {
+                    return "Invalid verse end number";
+                }
             }
         }
 
@@ -104,23 +133,37 @@ export class Reference {
         if (pretty) {
             const bookName = GetBook(this.language, this.book)?.name;
             return `${bookName} ${this.chapter}:${this.verse}${
-                this.verseEnd ? `-${this.verseEnd}` : ""
+                this.verseEnd
+                    ? this.chapterEnd
+                        ? `-${this.chapterEnd}:${this.verseEnd}`
+                        : `-${this.verseEnd}`
+                    : ""
             }`;
         }
         return `${this.book}:${this.chapter}:${this.verse}${
-            this.verseEnd ? `:${this.verseEnd}` : ""
+            this.verseEnd
+                ? this.chapterEnd
+                    ? `:${this.chapterEnd}:${this.verseEnd}`
+                    : `:${this.verseEnd}`
+                : ""
         }`;
     }
 
     /**
      * Parses the reference string into its components.
      * @param {string} text - The reference string to parse.
-     * @returns {[Book, number, number, number | undefined]} The parsed components: book, chapter, verse, and optional verseEnd.
+     * @returns {[Book, number, number, number | undefined, number | undefined]} The parsed components: book, chapter, verse, and optional verseEnd.
      * @throws {Error} If the reference string format is invalid.
      */
-    private Parse(text: string): [Book, number, number, number | undefined] {
+    private Parse(
+        text: string,
+    ): [Book, number, number, number | undefined, number | undefined] {
         const sections = text.split(/[,:-\s\.]/);
-        if (sections.length !== 3 && sections.length !== 4) {
+        if (
+            sections.length !== 3 &&
+            sections.length !== 4 &&
+            sections.length !== 5
+        ) {
             throw new Error("Invalid format: incorrect number of sections");
         }
 
@@ -140,6 +183,7 @@ export class Reference {
         }
 
         let verseEnd: number | undefined;
+        let chapterEnd: number | undefined;
         if (sections.length === 4) {
             verseEnd = Number.parseInt(sections[3], 10);
             if (Number.isNaN(verseEnd)) {
@@ -147,7 +191,19 @@ export class Reference {
             }
         }
 
-        return [book, chapter, verse, verseEnd];
+        if (sections.length === 5) {
+            chapterEnd = Number.parseInt(sections[3], 10);
+            if (Number.isNaN(chapterEnd)) {
+                throw new Error("Invalid format: invalid chapter end number");
+            }
+
+            verseEnd = Number.parseInt(sections[4], 10);
+            if (Number.isNaN(verseEnd)) {
+                throw new Error("Invalid format: invalid verse end number");
+            }
+        }
+
+        return [book, chapter, verse, chapterEnd, verseEnd];
     }
 }
 
