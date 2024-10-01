@@ -380,7 +380,7 @@ Testament. Each book is represented by its abbreviation as defined in the
 `Book` enum.
 
 ```typescript
-const Books = [
+const BooksOldTestament = [
     Book.GEN,
     Book.EXO,
     // ... other books
@@ -398,7 +398,7 @@ Testament. Each book is represented by its abbreviation as defined in the
 `Book` enum.
 
 ```typescript
-const Books = [
+const BooksNewTestament = [
     Book.MAT,
     Book.MRK,
     // ... other books
