@@ -158,7 +158,7 @@ export const Metadata_EN = Define([
         chapters: [18, 26, 22, 16, 20, 12, 29, 17, 18, 20, 10, 14],
     },
     {
-        name: "Song of Solomon",
+        name: "Song of Songs",
         chapters: [17, 17, 11, 16, 16, 13, 13, 14],
     },
     {
