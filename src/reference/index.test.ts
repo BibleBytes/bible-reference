@@ -13,7 +13,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("GEN:1:1");
         expect(ref.toString(true)).to.equal("Genesis 1:1");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Genesis 1:1 ("GEN 1:1")', () => {
@@ -26,7 +26,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("GEN:1:1");
         expect(ref.toString(true)).to.equal("Genesis 1:1");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Exodus 2:5-10 ("EXO 2:5-10")', () => {
@@ -39,7 +39,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(10);
         expect(ref.toString()).to.equal("EXO:2:5:10");
         expect(ref.toString(true)).to.equal("Exodus 2:5-10");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Leviticus 3:15 ("LEV 3:15")', () => {
@@ -52,7 +52,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("LEV:3:15");
         expect(ref.toString(true)).to.equal("Leviticus 3:15");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Numbers 5:6-8 ("NUM 5:6-8")', () => {
@@ -65,7 +65,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(8);
         expect(ref.toString()).to.equal("NUM:5:6:8");
         expect(ref.toString(true)).to.equal("Numbers 5:6-8");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Deuteronomy 10:12 ("DEU 10:12")', () => {
@@ -78,7 +78,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("DEU:10:12");
         expect(ref.toString(true)).to.equal("Deuteronomy 10:12");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Joshua 1:1-9 ("JOS 1:1-9")', () => {
@@ -91,7 +91,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(9);
         expect(ref.toString()).to.equal("JOS:1:1:9");
         expect(ref.toString(true)).to.equal("Joshua 1:1-9");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Judges 4:4-5 ("JDG 4:4-5")', () => {
@@ -104,7 +104,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(5);
         expect(ref.toString()).to.equal("JDG:4:4:5");
         expect(ref.toString(true)).to.equal("Judges 4:4-5");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Ruth 2:8 ("RTH 2:8")', () => {
@@ -117,7 +117,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("RUT:2:8");
         expect(ref.toString(true)).to.equal("Ruth 2:8");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Psalms 23:1-6 ("PSA 23:1-6")', () => {
@@ -130,7 +130,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(6);
         expect(ref.toString()).to.equal("PSA:23:1:6");
         expect(ref.toString(true)).to.equal("Psalms 23:1-6");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Proverbs 3:5-6 ("PRO 3:5-6")', () => {
@@ -143,7 +143,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(6);
         expect(ref.toString()).to.equal("PRO:3:5:6");
         expect(ref.toString(true)).to.equal("Proverbs 3:5-6");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Isaiah 9:6 ("ISA 9:6")', () => {
@@ -156,7 +156,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("ISA:9:6");
         expect(ref.toString(true)).to.equal("Isaiah 9:6");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Matthew 5:3-12 ("MAT 5:3-12")', () => {
@@ -169,7 +169,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(12);
         expect(ref.toString()).to.equal("MAT:5:3:12");
         expect(ref.toString(true)).to.equal("Matthew 5:3-12");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse John 3:16 ("JHN 3:16")', () => {
@@ -182,7 +182,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("JHN:3:16");
         expect(ref.toString(true)).to.equal("John 3:16");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Romans 8:28-30 ("ROM 8:28-30")', () => {
@@ -195,7 +195,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(30);
         expect(ref.toString()).to.equal("ROM:8:28:30");
         expect(ref.toString(true)).to.equal("Romans 8:28-30");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Revelation 22:13 ("REV 22:13")', () => {
@@ -208,7 +208,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("REV:22:13");
         expect(ref.toString(true)).to.equal("Revelation 22:13");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Isaiah 9:6-7 ("ISA.9.6-7")', () => {
@@ -221,7 +221,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(7);
         expect(ref.toString()).to.equal("ISA:9:6:7");
         expect(ref.toString(true)).to.equal("Isaiah 9:6-7");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Jeremiah 29:11 ("JER 29 11")', () => {
@@ -234,7 +234,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("JER:29:11");
         expect(ref.toString(true)).to.equal("Jeremiah 29:11");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Lamentations 3:22-23 ("LAM,3-22-23")', () => {
@@ -247,7 +247,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(23);
         expect(ref.toString()).to.equal("LAM:3:22:23");
         expect(ref.toString(true)).to.equal("Lamentations 3:22-23");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Ezekiel 37:4 ("EZK:37:4")', () => {
@@ -260,7 +260,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("EZK:37:4");
         expect(ref.toString(true)).to.equal("Ezekiel 37:4");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Genesis 3:15 ("GEN:3:15")', () => {
@@ -273,7 +273,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("GEN:3:15");
         expect(ref.toString(true)).to.equal("Genesis 3:15");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Exodus 4:12-16 ("EXO-4-12-16")', () => {
@@ -286,7 +286,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(16);
         expect(ref.toString()).to.equal("EXO:4:12:16");
         expect(ref.toString(true)).to.equal("Exodus 4:12-16");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Leviticus 5:6 ("LEV.5.6")', () => {
@@ -299,7 +299,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("LEV:5:6");
         expect(ref.toString(true)).to.equal("Leviticus 5:6");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Numbers 7:9-10 ("NUM 7 9 10")', () => {
@@ -312,7 +312,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(10);
         expect(ref.toString()).to.equal("NUM:7:9:10");
         expect(ref.toString(true)).to.equal("Numbers 7:9-10");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Deuteronomy 8:3 ("DEU,8-3")', () => {
@@ -325,7 +325,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("DEU:8:3");
         expect(ref.toString(true)).to.equal("Deuteronomy 8:3");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Joshua 6:20 ("JOS:6:20")', () => {
@@ -338,7 +338,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("JOS:6:20");
         expect(ref.toString(true)).to.equal("Joshua 6:20");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Judges 7:7-9 ("JDG-7-7-9")', () => {
@@ -351,7 +351,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(9);
         expect(ref.toString()).to.equal("JDG:7:7:9");
         expect(ref.toString(true)).to.equal("Judges 7:7-9");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Ruth 1:16 ("RUT.1.16")', () => {
@@ -364,7 +364,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("RUT:1:16");
         expect(ref.toString(true)).to.equal("Ruth 1:16");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse 1 Samuel 3:10-14 ("1SA 3 10 14")', () => {
@@ -377,7 +377,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(14);
         expect(ref.toString()).to.equal("1SA:3:10:14");
         expect(ref.toString(true)).to.equal("1 Samuel 3:10-14");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Matthew 5:6-7 ("MAT,5-6-7")', () => {
@@ -390,7 +390,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(7);
         expect(ref.toString()).to.equal("MAT:5:6:7");
         expect(ref.toString(true)).to.equal("Matthew 5:6-7");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse John 3:16 ("JHN.3.16")', () => {
@@ -403,7 +403,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("JHN:3:16");
         expect(ref.toString(true)).to.equal("John 3:16");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Romans 8:28-30 ("ROM:8:28-30")', () => {
@@ -416,7 +416,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(30);
         expect(ref.toString()).to.equal("ROM:8:28:30");
         expect(ref.toString(true)).to.equal("Romans 8:28-30");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse 1 Corinthians 13:4-7 ("1CO-13-4-7")', () => {
@@ -429,7 +429,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(7);
         expect(ref.toString()).to.equal("1CO:13:4:7");
         expect(ref.toString(true)).to.equal("1 Corinthians 13:4-7");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse Revelation 22:13 ("REV,22-13")', () => {
@@ -442,7 +442,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("REV:22:13");
         expect(ref.toString(true)).to.equal("Revelation 22:13");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it("Set to Genesis 1:2", () => {
@@ -456,7 +456,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.be.undefined;
         expect(ref.toString()).to.equal("GEN:1:2");
         expect(ref.toString(true)).to.equal("Genesis 1:2");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it("Set to Genesis 1:2-5", () => {
@@ -471,7 +471,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(5);
         expect(ref.toString()).to.equal("GEN:1:2:5");
         expect(ref.toString(true)).to.equal("Genesis 1:2-5");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it("Set to Genesis 1:2-5:1", () => {
@@ -487,7 +487,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(2);
         expect(ref.toString()).to.equal("GEN:1:2:5:2");
         expect(ref.toString(true)).to.equal("Genesis 1:2-5:2");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it('Parse 1 Corinthians 13:4-16:24 ("1CO-13-4-16-24")', () => {
@@ -500,7 +500,7 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(24);
         expect(ref.toString()).to.equal("1CO:13:4:16:24");
         expect(ref.toString(true)).to.equal("1 Corinthians 13:4-16:24");
-        expect(ref.IsValid());
+        expect(ref.GetError()).to.be.undefined;
     });
 
     it("Set to Invalid Genesis 1:2-1", () => {
@@ -515,14 +515,14 @@ describe("Reference", () => {
         expect(ref.verseEnd).to.equal(1);
         expect(ref.toString()).to.equal("INVALID");
         expect(ref.toString(true)).to.equal("INVALID");
-        expect(ref.IsValid()).to.not.be.undefined;
+        expect(ref.GetError()).to.be.not.undefined;
     });
 
     it("Set Chapter end but no verse end", () => {
         const ref = new Reference(Language.English, "GEN 1:1");
         ref.verse = 2;
         ref.chapterEnd = 2;
-        expect(ref.IsValid()).to.be.equal("Missing verse end number");
+        expect(ref.GetError()).to.be.equal("Missing verse end number");
     });
 
     it('Invalid Verse end ("1CO-13-4-16-25")', () => {

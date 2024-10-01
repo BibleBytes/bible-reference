@@ -56,7 +56,7 @@ export class Reference {
         this.verse = verse;
         this.chapterEnd = chapterEnd;
         this.verseEnd = verseEnd;
-        const error = this.IsValid();
+        const error = this.GetError();
         if (error !== undefined) {
             throw new Error(error);
         }
@@ -66,7 +66,7 @@ export class Reference {
      * Gets the error message if the reference is invalid.
      * @returns {string | undefined} The error message if invalid, otherwise undefined.
      */
-    public IsValid(): string | undefined {
+    public GetError(): string | undefined {
         const bookMetadata = GetBook(this.language, this.book);
         if (!bookMetadata) {
             return "Invalid book";
@@ -127,7 +127,7 @@ export class Reference {
      * ref.toString(true); // "MAT 5:9-10"
      */
     public toString(pretty?: boolean): string {
-        if (this.IsValid() !== undefined) {
+        if (this.GetError() !== undefined) {
             return "INVALID";
         }
         if (pretty) {

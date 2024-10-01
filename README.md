@@ -86,6 +86,10 @@ providing their standard ID/abbreviations according to the
 The `Reference` class is the main component of this package, allowing you to
 create and validate Bible references.
 
+Reference ID strings can use a mix of delimiter between sections
+(`\s`, `-`, `.`, `:`, `,`) for example, `EXO 2:5-10`, `EXO:2:5:10`,
+and `EXO-2:5-10` are all treated the same.
+
 ```typescript
 import { Reference, Language } from 'bible-reference-index';
 
@@ -97,8 +101,16 @@ console.log(ref1.toString()); // Output: "GEN:1:1"
 const ref2 = new Reference(Language.English, "EXO 2:5-10");
 console.log(ref2.toString(true)); // Output: "Exodus 2:5-10"
 
+// Creating a reference with mixed delimiters
+const ref3 = new Reference(Language.English, "EXO:2:5:10");
+console.log(ref3.toString(true)); // Output: "Exodus 2:5-10"
+
 // Setting a new reference
 ref1.Set("MAT 5:9");
+console.log(ref1.toString()); // Output: "MAT:5:9"
+
+// Setting a reference, mixed delimiters
+ref1.Set("MAT.5.9");
 console.log(ref1.toString()); // Output: "MAT:5:9"
 ```
 
@@ -113,11 +125,11 @@ class Reference {
     public book: Book;
     public chapter: number;
     public verse: number;
+    public chapterEnd?: number;
     public verseEnd?: number;
 
     constructor(language: Language, reference?: string);
     public Set(reference: string): void;
-    public IsValid(): boolean;
     public GetError(): string | undefined;
     public toString(pretty?: boolean): string;
 }
@@ -130,7 +142,7 @@ class Reference {
 ### Methods
 
 #### constructor
-Creates an instance of `Reference`.
+Creates an instance of `Reference`. Throws error if invalid verse.
 
 ```typescript
 constructor(language: Language, reference?: string)
@@ -142,8 +154,12 @@ constructor(language: Language, reference?: string)
 **Examples**:
 ```typescript
 const ref1 = new Reference(Language.English, "GEN 1:1");
-const ref2 = new Reference(Language.English, "EXO 2:5-10");
-const ref3 = new Reference(Language.English, "PSM 23:1-6");
+const ref2 = new Reference(Language.English, "PSM 23:1-6");
+const ref3 = new Reference(Language.English, "EXO 2:5-3:10");
+
+// using any delimiter or mix of delimiters
+const ref4 = new Reference(Language.English, "EXO:2:5:3:10");
+const ref4 = new Reference(Language.English, "EXO-2-5-3-10");
 ```
 
 
@@ -151,7 +167,8 @@ const ref3 = new Reference(Language.English, "PSM 23:1-6");
 
 
 #### Set
-Sets the reference details by parsing the reference string.
+Sets the reference details by parsing the reference string. Throws error if
+invalid verse.
 
 ```typescript
 public Set(reference: string): void
@@ -164,31 +181,36 @@ public Set(reference: string): void
 const ref = new Reference(Language.English);
 ref.Set("MAT 5:9");
 ref.Set("REV 21:3-4");
+
+// using any delimiter or mix of delimiters
+ref.Set("MAT:5:9");
+ref.Set("REV:21:3-4");
 ```
 
 
 <br/>
 
 
-#### IsValid
-Checks if the reference is valid. It ensures the verse and end of the verse
+#### GetError
+Checks if the reference is valid and returns the error as a string if the
+verse is invalid. For example, this ensures the verse and end of the verse
 range are valid.
 
 ```typescript
-public IsValid(): boolean
+public GetError(): string | undefined
 ```
 
-- **Returns**: `true` if the reference is valid, otherwise `false`.
+- **Returns**: `undefined` if the reference is valid, otherwise returns a string.
 
 **Examples**:
 ```typescript
 const ref = new Reference(Language.English);
 ref.Set("MAT 5:9");
-ref.IsValid(); // true
+ref.GetError(); // undefined
 ref.Set("MAT 5:1000");
-ref.IsValid(); // false
+ref.GetError(); // "Invalid verse number"
 ref.Set("MAT 5:9-8");
-ref.IsValid(); // false
+ref.GetError(); // "Invalid verse end number"
 ```
 
 
