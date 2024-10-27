@@ -3,6 +3,9 @@
     "version": "0.0.0",
     "description": "Christian Bible reference library for indexing, referencing, and validating bible verses.",
     "exports": "./dist/index.js",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "type": "module",
     "scripts": {
         "prepare": "npm run build",
