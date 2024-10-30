@@ -10,7 +10,8 @@
     "scripts": {
         "prepare": "npm run build",
         "build": "node ./build.js && tsc --emitDeclarationOnly",
-        "lint": "biome check --apply ./ && tsc --noEmit",
+        "format": "biome check --write .",
+        "lint": "biome lint . && tsc --noEmit",
         "test": "mocha ./"
     },
     "repository": {
