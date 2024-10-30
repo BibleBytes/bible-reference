@@ -810,7 +810,7 @@ describe("Reference", () => {
 });
 
 
-describe("Adjacent Verse", () => {
+describe("Adjacent Verses", () => {
 
     it('Valid "HAB 1:15" and "HAB 1:16"', () => {
         const verse1 = new Reference(Language.English, "HAB 1:15");
