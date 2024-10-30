@@ -117,6 +117,33 @@ export class Reference {
         return undefined;
     }
 
+
+    /**
+     * Gets the list of individual verses in the reference, ranging from 
+     * chapter start to chapter end and verse start to verse end.
+     * @returns {Reference[]} list of verses
+     */
+    public Breakdown():Reference[] {
+        const verses = [];
+        let nextVerse = this.getNextVerse();
+        while(nextVerse) {
+            verses.push(nextVerse);
+            nextVerse = nextVerse.getNextVerse();
+        }
+        return verses;
+    }
+
+
+    /**
+     * Checks if next verse comes after this verse.
+     * @param {Reference} nextVerse - is verse after this
+     * @returns {boolean} true if next verse is adjacent
+     */
+    public IsAdjacent(nextVerse: Reference): boolean {
+        return this.getNextVerse().toString() === nextVerse.toString();
+    }
+
+
     /**
      * Converts the reference to a string representation.
      * @param {boolean} [pretty] - If true, returns a human-readable string.
@@ -147,6 +174,23 @@ export class Reference {
                     : `:${this.verseEnd}`
                 : ""
         }`;
+    }
+
+
+    /**
+     * Gets next verse, within the same chapter. Ignores verse ends and
+     * chapter ends. Returns undefined if there is no next verse.
+     * @returns {Reference | undefined} if next verse is valid otherwise undefined
+     */
+    private getNextVerse():Reference|undefined {
+        const bookMetadata = GetBook(this.language, this.book);
+        if (this.verse + 1 <= bookMetadata.chapters[this.chapter - 1]) {
+            return new Reference(this.language, `${this.book}:${this.chapter}:${this.verse + 1}`);
+        }
+        if (this.chapter + 1 <= bookMetadata.chapters.length) {
+            return new Reference(this.language, `${this.book}:${this.chapter + 1}:1`);
+        }
+        return undefined;
     }
 
     /**

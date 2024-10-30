@@ -805,4 +805,29 @@ describe("Reference", () => {
             "Invalid verse end number",
         );
     });
+
+
+});
+
+
+describe("Adjacent Verse", () => {
+
+    it('Valid "HAB 1:15" and "HAB 1:16"', () => {
+        const verse1 = new Reference(Language.English, "HAB 1:15");
+        const verse2 = new Reference(Language.English, "HAB 1:16");
+        expect(verse1.IsAdjacent(verse2)).to.be.true;
+    });
+
+    it('Valid "1CO 2:22" and "1CO 2:23"', () => {
+        const verse1 = new Reference(Language.English, "1CO 3:22");
+        const verse2 = new Reference(Language.English, "1CO 3:23");
+        expect(verse1.IsAdjacent(verse2)).to.be.true;
+    });
+
+    it('Valid "1CO 2:23" and "1CO 4:1"', () => {
+        const verse1 = new Reference(Language.English, "1CO 3:23");
+        const verse2 = new Reference(Language.English, "1CO 4:1");
+        expect(verse1.IsAdjacent(verse2)).to.be.true;
+    });
+
 });
