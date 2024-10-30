@@ -136,7 +136,7 @@ export class Reference {
 
     /**
      * Checks if two verses are adjacent, within a the same chapter.
-     * @param {Reference} nextVerse - is verse after this
+     * @param {Reference} nextVerse - is verse after this verse
      * @returns {boolean} true if verses are adjacent
      */
     public IsAdjacent(nextVerse: Reference): boolean {
