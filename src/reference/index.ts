@@ -135,9 +135,9 @@ export class Reference {
 
 
     /**
-     * Checks if next verse comes after this verse.
+     * Checks if two verses are adjacent, within a the same chapter.
      * @param {Reference} nextVerse - is verse after this
-     * @returns {boolean} true if next verse is adjacent
+     * @returns {boolean} true if verses are adjacent
      */
     public IsAdjacent(nextVerse: Reference): boolean {
         return this.getNextVerse().toString() === nextVerse.toString();
