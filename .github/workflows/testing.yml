@@ -6,47 +6,28 @@ on:
 
 jobs:
 
-
   unit-test:
-    strategy:
-      matrix:
-        node-version: [20.x, 22.x]
 
-    name: Unit Tests (NodeJS ${{ matrix.node-version }})
-    runs-on: ubuntu-latest
+    name: Unit Tests
+    runs-on: "ubuntu-latest"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Node.js ${{ matrix.node-version }}
+      - name: Install Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22
 
       - name: Install dependencies
         run: npm install
 
       - name: Run Unit Tests
         run: npm run test
-
         
-  formating:
-    name: Formating
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Biome
-        uses: biomejs/setup-biome@v2
-        with:
-          version: latest
-      - name: Run Biome
-        run: biome ci .
-
-
   linting:
-    name: Linting
+    name: Linting & Formatting
     runs-on: ubuntu-latest
 
     steps:
@@ -55,12 +36,18 @@ jobs:
       
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run linting
-        run: npm run lint
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
+        with:
+          version: latest
 
+      - name: Biome Linting
+        run: biome ci .
 
+      - name: TypeScript Linting
+        run: tsc --noEmit

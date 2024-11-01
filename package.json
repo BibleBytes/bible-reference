@@ -10,7 +10,8 @@
     "scripts": {
         "prepare": "npm run build",
         "build": "node ./build.js && tsc --emitDeclarationOnly",
-        "lint": "biome check --apply ./ && tsc --noEmit",
+        "format": "biome check --write .",
+        "lint": "biome lint . && tsc --noEmit",
         "test": "mocha ./"
     },
     "repository": {
@@ -25,14 +26,14 @@
     "license": "MIT",
     "files": ["dist/*"],
     "devDependencies": {
-        "@biomejs/biome": "1.7.3",
-        "@types/chai": "^4.3.16",
-        "@types/mocha": "^10.0.6",
-        "chai": "^5.1.1",
+        "@biomejs/biome": "1.9.3",
+        "@types/chai": "^4.3.20",
+        "@types/mocha": "^10.0.9",
+        "chai": "^5.1.2",
         "cross-env": "^7.0.3",
-        "esbuild": "^0.21.4",
-        "mocha": "^10.4.0",
+        "esbuild": "^0.21.5",
+        "mocha": "^10.8.2",
         "ts-node": "^10.9.2",
-        "typescript": "^5.4.5"
+        "typescript": "^5.6.3"
     }
 }

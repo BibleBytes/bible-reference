@@ -91,7 +91,7 @@ Reference ID strings can use a mix of delimiter between sections
 and `EXO-2:5-10` are all treated the same.
 
 ```typescript
-import { Reference, Language } from 'bible-reference-index';
+import { Reference, Language } from '@biblebytes/bible-reference';
 
 // Creating a new reference
 const ref1 = new Reference(Language.English);
@@ -185,6 +185,58 @@ ref.Set("REV 21:3-4");
 // using any delimiter or mix of delimiters
 ref.Set("MAT:5:9");
 ref.Set("REV:21:3-4");
+```
+
+
+<br/>
+
+#### IsFollowedBy
+Checks if the current verse is followed by the specified verse (nextVerse),
+within the same chapter. <i>Note: does not utilize chapter end or verse end;
+thus `GEN 1:1-5` is followed by `GEN 1:2`.</i>
+
+```typescript
+public IsFollowedBy(nextVerse: Reference): boolean
+```
+
+- **reference**: The verse to check if it comes after the current verse.
+- **Returns**: Returns `true` if the current verse is followed by `nextVerse`;
+    otherwise, it returns `false`.
+
+```ts
+const ref1 = new Reference(Language.English, "GEN 1:1");
+const ref2 = new Reference(Language.English, "GEN 1:2");
+ref1.IsFollowedBy(ref2); // returns true
+
+const ref3 = new Reference(Language.English, "MAT 5:3");
+const ref4 = new Reference(Language.English, "MAT 5:4");
+const ref5 = new Reference(Language.English, "MAT 5:5");
+ref3.IsFollowedBy(ref4); // returns true
+ref3.IsFollowedBy(ref5); // returns false
+```
+
+
+<br/>
+
+
+#### Unpack
+Unpacks a verse range into it's individual verses, returning a list of verses. 
+For example `GEN:1:1-3` can be unpacked into `GEN:1:1`, `GEN:1:2`, and `GEN:1:3`.
+References can range over both chapters and verses.
+
+```typescript
+public Unpack(): Reference[]
+```
+
+- **Returns**: a list of reference verses
+
+**Examples**:
+```typescript
+const ref1 = new Reference(Language.English, `GEN:1:1-3`);
+ref1.Unpack(); // ["GEN:1:1", "GEN:1:2", "GEN:1:3"]
+
+const ref2 = new Reference(Language.English, `GEN:1:31-2:1`);
+ref2.Unpack(); // ["GEN:1:31", "GEN:2:1"]
 ```
 
 

@@ -806,3 +806,566 @@ describe("Reference", () => {
         );
     });
 });
+
+describe("Is Followed By Verses", () => {
+    it('Valid "HAB 1:15" and "HAB 1:16"', () => {
+        const verse1 = new Reference(Language.English, "HAB 1:15");
+        const verse2 = new Reference(Language.English, "HAB 1:16");
+        expect(verse1.IsFollowedBy(verse2)).to.be.true;
+    });
+
+    it('Valid "1CO 2:22" and "1CO 2:23"', () => {
+        const verse1 = new Reference(Language.English, "1CO 3:22");
+        const verse2 = new Reference(Language.English, "1CO 3:23");
+        expect(verse1.IsFollowedBy(verse2)).to.be.true;
+    });
+
+    it('Valid "1CO 2:23" and "1CO 4:1"', () => {
+        const verse1 = new Reference(Language.English, "1CO 3:23");
+        const verse2 = new Reference(Language.English, "1CO 4:1");
+        expect(verse1.IsFollowedBy(verse2)).to.be.true;
+    });
+
+    it('Valid "MAT 5:12" and "MAT 5:13"', () => {
+        const verse1 = new Reference(Language.English, "MAT 5:12");
+        const verse2 = new Reference(Language.English, "MAT 5:13");
+        expect(verse1.IsFollowedBy(verse2)).to.be.true;
+    });
+
+    it('Valid "ROM 8:28" and "ROM 8:29"', () => {
+        const verse1 = new Reference(Language.English, "ROM 8:28");
+        const verse2 = new Reference(Language.English, "ROM 8:29");
+        expect(verse1.IsFollowedBy(verse2)).to.be.true;
+    });
+
+    it('Valid "GEN 1:1" and "GEN 1:2"', () => {
+        const verse1 = new Reference(Language.English, "GEN 1:1");
+        const verse2 = new Reference(Language.English, "GEN 1:2");
+        expect(verse1.IsFollowedBy(verse2)).to.be.true;
+    });
+
+    it('Valid "PHP 2:3" and "PHP 2:4"', () => {
+        const verse1 = new Reference(Language.English, "PHP 2:3");
+        const verse2 = new Reference(Language.English, "PHP 2:4");
+        expect(verse1.IsFollowedBy(verse2)).to.be.true;
+    });
+
+    it('Valid "1PE 5:8" and "1PE 5:9"', () => {
+        const verse1 = new Reference(Language.English, "1PE 5:8");
+        const verse2 = new Reference(Language.English, "1PE 5:9");
+        expect(verse1.IsFollowedBy(verse2)).to.be.true;
+    });
+
+    it('Invalid "HAB 1:16" and "HAB 1:15"', () => {
+        const verse1 = new Reference(Language.English, "HAB 1:16");
+        const verse2 = new Reference(Language.English, "HAB 1:15");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "1CO 2:23" and "1CO 2:22"', () => {
+        const verse1 = new Reference(Language.English, "1CO 3:23");
+        const verse2 = new Reference(Language.English, "1CO 3:22");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "1CO 4:1" and "1CO 2:23"', () => {
+        const verse1 = new Reference(Language.English, "1CO 4:1");
+        const verse2 = new Reference(Language.English, "1CO 3:23");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "MAT 5:13" and "MAT 5:12"', () => {
+        const verse1 = new Reference(Language.English, "MAT 5:13");
+        const verse2 = new Reference(Language.English, "MAT 5:12");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "ROM 8:29" and "ROM 8:28"', () => {
+        const verse1 = new Reference(Language.English, "ROM 8:29");
+        const verse2 = new Reference(Language.English, "ROM 8:28");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "GEN 1:2" and "GEN 1:1"', () => {
+        const verse1 = new Reference(Language.English, "GEN 1:2");
+        const verse2 = new Reference(Language.English, "GEN 1:1");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "PHP 2:4" and "PHP 2:3"', () => {
+        const verse1 = new Reference(Language.English, "PHP 2:4");
+        const verse2 = new Reference(Language.English, "PHP 2:3");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "1PE 5:9" and "1PE 5:8"', () => {
+        const verse1 = new Reference(Language.English, "1PE 5:9");
+        const verse2 = new Reference(Language.English, "1PE 5:8");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "1CO 3:9" and "1CO 3:23"', () => {
+        const verse1 = new Reference(Language.English, "1CO 3:9");
+        const verse2 = new Reference(Language.English, "1CO 3:23");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "MAT 5:10" and "MAT 6:1"', () => {
+        const verse1 = new Reference(Language.English, "MAT 5:10");
+        const verse2 = new Reference(Language.English, "MAT 6:1");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "JHN 3:16" and "JHN 3:18"', () => {
+        const verse1 = new Reference(Language.English, "JHN 3:16");
+        const verse2 = new Reference(Language.English, "JHN 3:18");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "ROM 5:5" and "ROM 6:1"', () => {
+        const verse1 = new Reference(Language.English, "ROM 5:5");
+        const verse2 = new Reference(Language.English, "ROM 6:1");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "GEN 2:4" and "GEN 4:1"', () => {
+        const verse1 = new Reference(Language.English, "GEN 2:4");
+        const verse2 = new Reference(Language.English, "GEN 4:1");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "1TH 4:15" and "1TH 5:1"', () => {
+        const verse1 = new Reference(Language.English, "1TH 4:15");
+        const verse2 = new Reference(Language.English, "1TH 5:1");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "MAT 7:7" and "LUK 6:38"', () => {
+        const verse1 = new Reference(Language.English, "MAT 7:7");
+        const verse2 = new Reference(Language.English, "LUK 6:38");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "ACT 2:4" and "ROM 1:16"', () => {
+        const verse1 = new Reference(Language.English, "ACT 2:4");
+        const verse2 = new Reference(Language.English, "ROM 1:16");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "GAL 5:22" and "EPH 4:1"', () => {
+        const verse1 = new Reference(Language.English, "GAL 5:22");
+        const verse2 = new Reference(Language.English, "EPH 4:1");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "1JN 1:5" and "JAS 2:14"', () => {
+        const verse1 = new Reference(Language.English, "1JN 1:5");
+        const verse2 = new Reference(Language.English, "JAS 2:14");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "1PE 3:9" and "2PE 2:1"', () => {
+        const verse1 = new Reference(Language.English, "1PE 3:9");
+        const verse2 = new Reference(Language.English, "2PE 2:1");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "GEN 50:26" and "EXO 1:1"', () => {
+        const verse1 = new Reference(Language.English, "GEN 50:26");
+        const verse2 = new Reference(Language.English, "EXO 1:1");
+        expect(verse1.IsFollowedBy(verse2)).to.be.false;
+    });
+
+    it('Invalid "GEN 50:26" and undefined', () => {
+        const verse1 = new Reference(Language.English, "GEN 50:26");
+        expect(verse1.IsFollowedBy(undefined as unknown as Reference)).to.be
+            .false;
+    });
+});
+
+describe("Unpack", () => {
+    it('Unpack "GEN 1:1"', () => {
+        const verse = new Reference(Language.English, "GEN 1:1");
+        const unpackedVerses = ["GEN:1:1"];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "GEN 1:1-4"', () => {
+        const verse = new Reference(Language.English, "GEN 1:1-4");
+        const unpackedVerses = ["GEN:1:1", "GEN:1:2", "GEN:1:3", "GEN:1:4"];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "EXO 12:1-3"', () => {
+        const verse = new Reference(Language.English, "EXO 12:1-3");
+        const unpackedVerses = ["EXO:12:1", "EXO:12:2", "EXO:12:3"];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "MAT 5:1-5"', () => {
+        const verse = new Reference(Language.English, "MAT 5:1-5");
+        const unpackedVerses = [
+            "MAT:5:1",
+            "MAT:5:2",
+            "MAT:5:3",
+            "MAT:5:4",
+            "MAT:5:5",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "LUK 3:4-6"', () => {
+        const verse = new Reference(Language.English, "LUK 3:4-6");
+        const unpackedVerses = ["LUK:3:4", "LUK:3:5", "LUK:3:6"];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "ROM 8:31-33"', () => {
+        const verse = new Reference(Language.English, "ROM 8:31-33");
+        const unpackedVerses = ["ROM:8:31", "ROM:8:32", "ROM:8:33"];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "1CO 12:4-6"', () => {
+        const verse = new Reference(Language.English, "1CO 12:4-6");
+        const unpackedVerses = ["1CO:12:4", "1CO:12:5", "1CO:12:6"];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "REV 21:1-3"', () => {
+        const verse = new Reference(Language.English, "REV 21:1-3");
+        const unpackedVerses = ["REV:21:1", "REV:21:2", "REV:21:3"];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "PHP 1:3-5"', () => {
+        const verse = new Reference(Language.English, "PHP 1:3-5");
+        const unpackedVerses = ["PHP:1:3", "PHP:1:4", "PHP:1:5"];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "GEN 1:1-10"', () => {
+        const verse = new Reference(Language.English, "GEN 1:1-10");
+        const unpackedVerses = [
+            "GEN:1:1",
+            "GEN:1:2",
+            "GEN:1:3",
+            "GEN:1:4",
+            "GEN:1:5",
+            "GEN:1:6",
+            "GEN:1:7",
+            "GEN:1:8",
+            "GEN:1:9",
+            "GEN:1:10",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "EXO 12:1-15"', () => {
+        const verse = new Reference(Language.English, "EXO 12:1-15");
+        const unpackedVerses = [
+            "EXO:12:1",
+            "EXO:12:2",
+            "EXO:12:3",
+            "EXO:12:4",
+            "EXO:12:5",
+            "EXO:12:6",
+            "EXO:12:7",
+            "EXO:12:8",
+            "EXO:12:9",
+            "EXO:12:10",
+            "EXO:12:11",
+            "EXO:12:12",
+            "EXO:12:13",
+            "EXO:12:14",
+            "EXO:12:15",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "MAT 5:1-12"', () => {
+        const verse = new Reference(Language.English, "MAT 5:1-12");
+        const unpackedVerses = [
+            "MAT:5:1",
+            "MAT:5:2",
+            "MAT:5:3",
+            "MAT:5:4",
+            "MAT:5:5",
+            "MAT:5:6",
+            "MAT:5:7",
+            "MAT:5:8",
+            "MAT:5:9",
+            "MAT:5:10",
+            "MAT:5:11",
+            "MAT:5:12",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "ROM 8:28-39"', () => {
+        const verse = new Reference(Language.English, "ROM 8:28-39");
+        const unpackedVerses = [
+            "ROM:8:28",
+            "ROM:8:29",
+            "ROM:8:30",
+            "ROM:8:31",
+            "ROM:8:32",
+            "ROM:8:33",
+            "ROM:8:34",
+            "ROM:8:35",
+            "ROM:8:36",
+            "ROM:8:37",
+            "ROM:8:38",
+            "ROM:8:39",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "1PE 1:1-5"', () => {
+        const verse = new Reference(Language.English, "1PE 1:1-5");
+        const unpackedVerses = [
+            "1PE:1:1",
+            "1PE:1:2",
+            "1PE:1:3",
+            "1PE:1:4",
+            "1PE:1:5",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "LUK 9:1-17"', () => {
+        const verse = new Reference(Language.English, "LUK 9:1-17");
+        const unpackedVerses = [
+            "LUK:9:1",
+            "LUK:9:2",
+            "LUK:9:3",
+            "LUK:9:4",
+            "LUK:9:5",
+            "LUK:9:6",
+            "LUK:9:7",
+            "LUK:9:8",
+            "LUK:9:9",
+            "LUK:9:10",
+            "LUK:9:11",
+            "LUK:9:12",
+            "LUK:9:13",
+            "LUK:9:14",
+            "LUK:9:15",
+            "LUK:9:16",
+            "LUK:9:17",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "GEN 1:1-3:5"', () => {
+        const verse = new Reference(Language.English, "GEN 1:1-3:5");
+        const unpackedVerses = [
+            "GEN:1:1",
+            "GEN:1:2",
+            "GEN:1:3",
+            "GEN:1:4",
+            "GEN:1:5",
+            "GEN:1:6",
+            "GEN:1:7",
+            "GEN:1:8",
+            "GEN:1:9",
+            "GEN:1:10",
+            "GEN:1:11",
+            "GEN:1:12",
+            "GEN:1:13",
+            "GEN:1:14",
+            "GEN:1:15",
+            "GEN:1:16",
+            "GEN:1:17",
+            "GEN:1:18",
+            "GEN:1:19",
+            "GEN:1:20",
+            "GEN:1:21",
+            "GEN:1:22",
+            "GEN:1:23",
+            "GEN:1:24",
+            "GEN:1:25",
+            "GEN:1:26",
+            "GEN:1:27",
+            "GEN:1:28",
+            "GEN:1:29",
+            "GEN:1:30",
+            "GEN:1:31",
+            "GEN:2:1",
+            "GEN:2:2",
+            "GEN:2:3",
+            "GEN:2:4",
+            "GEN:2:5",
+            "GEN:2:6",
+            "GEN:2:7",
+            "GEN:2:8",
+            "GEN:2:9",
+            "GEN:2:10",
+            "GEN:2:11",
+            "GEN:2:12",
+            "GEN:2:13",
+            "GEN:2:14",
+            "GEN:2:15",
+            "GEN:2:16",
+            "GEN:2:17",
+            "GEN:2:18",
+            "GEN:2:19",
+            "GEN:2:20",
+            "GEN:2:21",
+            "GEN:2:22",
+            "GEN:2:23",
+            "GEN:2:24",
+            "GEN:2:25",
+            "GEN:3:1",
+            "GEN:3:2",
+            "GEN:3:3",
+            "GEN:3:4",
+            "GEN:3:5",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "GEN 2:7-3:5"', () => {
+        const verse = new Reference(Language.English, "GEN 2:7-3:5");
+        const unpackedVerses = [
+            "GEN:2:7",
+            "GEN:2:8",
+            "GEN:2:9",
+            "GEN:2:10",
+            "GEN:2:11",
+            "GEN:2:12",
+            "GEN:2:13",
+            "GEN:2:14",
+            "GEN:2:15",
+            "GEN:2:16",
+            "GEN:2:17",
+            "GEN:2:18",
+            "GEN:2:19",
+            "GEN:2:20",
+            "GEN:2:21",
+            "GEN:2:22",
+            "GEN:2:23",
+            "GEN:2:24",
+            "GEN:2:25",
+            "GEN:3:1",
+            "GEN:3:2",
+            "GEN:3:3",
+            "GEN:3:4",
+            "GEN:3:5",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "GEN 2:7-3:5"', () => {
+        const verse = new Reference(Language.English, "GEN 2:7-3:5");
+        const unpackedVerses = [
+            "GEN:2:7",
+            "GEN:2:8",
+            "GEN:2:9",
+            "GEN:2:10",
+            "GEN:2:11",
+            "GEN:2:12",
+            "GEN:2:13",
+            "GEN:2:14",
+            "GEN:2:15",
+            "GEN:2:16",
+            "GEN:2:17",
+            "GEN:2:18",
+            "GEN:2:19",
+            "GEN:2:20",
+            "GEN:2:21",
+            "GEN:2:22",
+            "GEN:2:23",
+            "GEN:2:24",
+            "GEN:2:25",
+            "GEN:3:1",
+            "GEN:3:2",
+            "GEN:3:3",
+            "GEN:3:4",
+            "GEN:3:5",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "ROM 8:28-9:5"', () => {
+        const verse = new Reference(Language.English, "ROM 8:28-9:5");
+        const unpackedVerses = [
+            "ROM:8:28",
+            "ROM:8:29",
+            "ROM:8:30",
+            "ROM:8:31",
+            "ROM:8:32",
+            "ROM:8:33",
+            "ROM:8:34",
+            "ROM:8:35",
+            "ROM:8:36",
+            "ROM:8:37",
+            "ROM:8:38",
+            "ROM:8:39",
+            "ROM:9:1",
+            "ROM:9:2",
+            "ROM:9:3",
+            "ROM:9:4",
+            "ROM:9:5",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "1CO 4:7-5:10"', () => {
+        const verse = new Reference(Language.English, "1CO 4:7-5:10");
+        const unpackedVerses = [
+            "1CO:4:7",
+            "1CO:4:8",
+            "1CO:4:9",
+            "1CO:4:10",
+            "1CO:4:11",
+            "1CO:4:12",
+            "1CO:4:13",
+            "1CO:4:14",
+            "1CO:4:15",
+            "1CO:4:16",
+            "1CO:4:17",
+            "1CO:4:18",
+            "1CO:4:19",
+            "1CO:4:20",
+            "1CO:4:21",
+            "1CO:5:1",
+            "1CO:5:2",
+            "1CO:5:3",
+            "1CO:5:4",
+            "1CO:5:5",
+            "1CO:5:6",
+            "1CO:5:7",
+            "1CO:5:8",
+            "1CO:5:9",
+            "1CO:5:10",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+
+    it('Unpack "EPH 1:15-2:10"', () => {
+        const verse = new Reference(Language.English, "EPH 1:15-2:10");
+        const unpackedVerses = [
+            "EPH:1:15",
+            "EPH:1:16",
+            "EPH:1:17",
+            "EPH:1:18",
+            "EPH:1:19",
+            "EPH:1:20",
+            "EPH:1:21",
+            "EPH:1:22",
+            "EPH:1:23",
+            "EPH:2:1",
+            "EPH:2:2",
+            "EPH:2:3",
+            "EPH:2:4",
+            "EPH:2:5",
+            "EPH:2:6",
+            "EPH:2:7",
+            "EPH:2:8",
+            "EPH:2:9",
+            "EPH:2:10",
+        ];
+        expect(verse.Unpack().map((o) => o.toString())).to.eql(unpackedVerses);
+    });
+});
