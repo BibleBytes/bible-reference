@@ -97,7 +97,6 @@ export class Reference {
 
             if (this.verseEnd !== undefined) {
                 if (this.verse < 1 || this.verseEnd > lastVerseEnd) {
-                    console.log(this.verseEnd, lastVerseEnd);
                     return "Invalid verse end number";
                 }
             } else {
@@ -117,32 +116,48 @@ export class Reference {
         return undefined;
     }
 
-
     /**
-     * Gets the list of individual verses in the reference, ranging from 
-     * chapter start to chapter end and verse start to verse end.
-     * @returns {Reference[]} list of verses
+     * Gets the list of individual single verses from the reference. Ranging
+     * from the chapter start to chapter end and verse start to verse end.
+     * @returns {Reference[]} list of reference verses
+     * @example
+     * const ref = new Reference(Language.English, "GEN 1:1-4");
+     * ref1.Unpack(ref2); // ["GEN:1:1", "GEN:1:2", "GEN:1:3", "GEN:1:4"]
      */
-    public Breakdown():Reference[] {
+    public Unpack(): Reference[] {
         const verses = [];
-        let nextVerse = this.getNextVerse();
-        while(nextVerse) {
+        const _chapterEnd = this.chapterEnd ? this.chapterEnd : this.chapter;
+        const _verseEnd = this.verseEnd ? this.verseEnd : this.verse;
+        const firstVerse = `${this.book}:${this.chapter}:${this.verse}`;
+        const lastVerse = `${this.book}:${_chapterEnd}:${_verseEnd}`;
+        let nextVerse = new Reference(this.language, firstVerse);
+        while (nextVerse) {
             verses.push(nextVerse);
+            if (nextVerse.toString() === lastVerse) {
+                break;
+            }
             nextVerse = nextVerse.getNextVerse();
         }
         return verses;
     }
 
-
     /**
-     * Checks if two verses are adjacent, within a the same chapter.
-     * @param {Reference} nextVerse - is verse after this verse
-     * @returns {boolean} true if verses are adjacent
+     * Checks if `this` verse is followed by `nextVerse`, within the
+     * same chapter. Note: does not utilize chapter end or verse end; thus
+     * `GEN 1:1-2` is followed by `GEN 1:2`.
+     * @param {Reference} nextVerse - verse to check if it comes after this verse
+     * @returns {boolean} true if `this` verse is followed by `nextVerse`
+     * @example
+     * const ref1 = new Reference(Language.English, "GEN 1:1");
+     * const ref2 = new Reference(Language.English, "GEN 1:2");
+     * ref1.IsFollowedBy(ref2); // true
      */
-    public IsAdjacent(nextVerse: Reference): boolean {
-        return this.getNextVerse().toString() === nextVerse.toString();
+    public IsFollowedBy(nextVerse: Reference): boolean {
+        if (nextVerse === undefined) {
+            return false;
+        }
+        return this.getNextVerse()?.toString() === nextVerse.toString();
     }
-
 
     /**
      * Converts the reference to a string representation.
@@ -176,19 +191,24 @@ export class Reference {
         }`;
     }
 
-
     /**
      * Gets next verse, within the same chapter. Ignores verse ends and
      * chapter ends. Returns undefined if there is no next verse.
      * @returns {Reference | undefined} if next verse is valid otherwise undefined
      */
-    private getNextVerse():Reference|undefined {
+    private getNextVerse(): Reference | undefined {
         const bookMetadata = GetBook(this.language, this.book);
         if (this.verse + 1 <= bookMetadata.chapters[this.chapter - 1]) {
-            return new Reference(this.language, `${this.book}:${this.chapter}:${this.verse + 1}`);
+            return new Reference(
+                this.language,
+                `${this.book}:${this.chapter}:${this.verse + 1}`,
+            );
         }
         if (this.chapter + 1 <= bookMetadata.chapters.length) {
-            return new Reference(this.language, `${this.book}:${this.chapter + 1}:1`);
+            return new Reference(
+                this.language,
+                `${this.book}:${this.chapter + 1}:1`,
+            );
         }
         return undefined;
     }
