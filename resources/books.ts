@@ -90,7 +90,7 @@ export enum Book {
     Thessalonians1 = "1TH",
     Thessalonians2 = "2TH",
     Timothy1 = "1TI",
-    Timothy2 = "1TI",
+    Timothy2 = "2TI",
     Titus = "TIT",
     Philemon = "PHM",
     Hebrews = "HEB",
