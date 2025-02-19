@@ -13,7 +13,8 @@
 
 
 ---
-## Overview
+
+# Overview
 
 **Bible Reference Index** is a Christian Bible reference verse index and index validation system. It provides a standard way to index and reference verses in the Bible. The package is built to address the lack of a standard book abbreviation or Bible reference ID system. 
 
@@ -21,7 +22,7 @@
 <br/>
 
 
-## Installation
+# Installation
 To install the package via npm, run:
 ```bash
 npm i @biblebytes/bible-reference
@@ -31,7 +32,7 @@ npm i @biblebytes/bible-reference
 <br/>
 
 
-## Book IDs
+# Book IDs
 This table categorizes the books of the Bible into Old and New Testaments,
 providing their standard ID/abbreviations according to the
 [Digital Bible Library USX Standard](https://app.thedigitalbiblelibrary.org/static/docs/usx/vocabularies.html).
@@ -82,56 +83,64 @@ providing their standard ID/abbreviations according to the
 <br/>
 
 
-## Reference Class
+# Reference Class
 The `Reference` class is the main component of this package, allowing you to
 create and validate Bible references.
 
-Reference ID strings can use a mix of delimiter between sections
-(`\s`, `-`, `.`, `:`, `,`) for example, `EXO 2:5-10`, `EXO:2:5:10`,
-and `EXO-2:5-10` are all treated the same.
+Reference ID strings support both book IDs and book names (with either a space or a colon (`:`) before the chapter number). Chapters, verses, and verse ranges are supported. Here are the supported formats...
+
+ - `GEN:1` or `Genesis 1`
+ - `GEN:1:2` or `Genesis 1:2`
+ - `GEN:1:2-3` or `Genesis 1:2-3`
 
 ```typescript
 import { Reference, Language } from '@biblebytes/bible-reference';
 
-// Creating a new reference
-const ref1 = new Reference(Language.English);
-console.log(ref1.toString()); // Output: "GEN:1:1"
+const ref1 = new Reference(Language.English, "Exodus 2:3");
+console.log(ref1.toString()); // EXO:2:3
 
-// Creating a reference with a verse range
-const ref2 = new Reference(Language.English, "EXO 2:5-10");
-console.log(ref2.toString(true)); // Output: "Exodus 2:5-10"
+const ref2 = new Reference(Language.English, "EXO:2:5-10");
+console.log(ref2.toString(true)); // Exodus 2:5-10
 
-// Creating a reference with mixed delimiters
-const ref3 = new Reference(Language.English, "EXO:2:5:10");
-console.log(ref3.toString(true)); // Output: "Exodus 2:5-10"
+ref1.Set("MAT:5");
+console.log(reg1.getLanguage()); // Language.English
+console.log(reg1.getBook());     // Book.Matthew
+console.log(reg1.getChapter());  // 5
+console.log(reg1.getVerse());    // undefined
+console.log(reg1.getVerseEnd()); // undefined
 
-// Setting a new reference
-ref1.Set("MAT 5:9");
-console.log(ref1.toString()); // Output: "MAT:5:9"
+ref1.Set("Matthew 28:19-20");
+console.log(reg1.getLanguage()); // Language.English
+console.log(reg1.getBook());     // Book.Matthew
+console.log(reg1.getChapter());  // 28
+console.log(reg1.getVerse());    // 19
+console.log(reg1.getVerseEnd()); // 20
 
-// Setting a reference, mixed delimiters
-ref1.Set("MAT.5.9");
-console.log(ref1.toString()); // Output: "MAT:5:9"
 ```
 
 
 <br/>
 
 
-### Structure
+## Structure
 ```typescript
 class Reference {
-    public language: Language;
-    public book: Book;
-    public chapter: number;
-    public verse: number;
-    public chapterEnd?: number;
-    public verseEnd?: number;
-
-    constructor(language: Language, reference?: string);
-    public Set(reference: string): void;
-    public GetError(): string | undefined;
-    public toString(pretty?: boolean): string;
+    constructor(language: Language, buffer: string);
+    public set(buffer: string): void;
+    public getLanguage(): Language;
+    public getBook(): Book;
+    public getChapter(): number;
+    public getVerse(): number | undefined;
+    public getVerseEnd(): number | undefined;
+    public unpack(): Reference[];
+    public toString(humanReadable?: boolean): string;
+    public static build(
+        language: Language,
+        book: Book,
+        chapter: number,
+        verse?: number,
+        verseEnd?: number,
+    ): Reference
 }
 ```
 
@@ -139,90 +148,152 @@ class Reference {
 <br/>
 
 
-### Methods
+## Methods
 
-#### constructor
+### constructor
 Creates an instance of `Reference`. Throws error if invalid verse.
 
 ```typescript
-constructor(language: Language, reference?: string)
+constructor(language: Language, buffer: string)
 ```
 
 - **language**: The language of the reference.
-- **reference**: (optional) The reference string to parse.
+- **buffer**: The reference string to parse.
 
 **Examples**:
 ```typescript
-const ref1 = new Reference(Language.English, "GEN 1:1");
-const ref2 = new Reference(Language.English, "PSM 23:1-6");
-const ref3 = new Reference(Language.English, "EXO 2:5-3:10");
-
-// using any delimiter or mix of delimiters
-const ref4 = new Reference(Language.English, "EXO:2:5:3:10");
-const ref4 = new Reference(Language.English, "EXO-2-5-3-10");
+const ref1 = new Reference(Language.English, "GEN:1");
+const ref2 = new Reference(Language.English, "PSM:23:1");
+const ref3 = new Reference(Language.English, "EXO:2:5-9");
 ```
 
 
 <br/>
 
 
-#### Set
-Sets the reference details by parsing the reference string. Throws error if
+### set
+Sets the reference based on the reference string. Throws error if
 invalid verse.
 
 ```typescript
-public Set(reference: string): void
+public set(buffer: string): void
 ```
 
-- **reference**: The reference string to parse.
+- **buffer**: The reference string to parse.
 
 **Examples**:
 ```typescript
-const ref = new Reference(Language.English);
-ref.Set("MAT 5:9");
-ref.Set("REV 21:3-4");
-
-// using any delimiter or mix of delimiters
-ref.Set("MAT:5:9");
-ref.Set("REV:21:3-4");
+const ref = new Reference(Language.English, "GEN:1");
+ref.set("Matthew 5:9");
 ```
 
 
 <br/>
 
-#### IsFollowedBy
-Checks if the current verse is followed by the specified verse (nextVerse),
-within the same chapter. <i>Note: does not utilize chapter end or verse end;
-thus `GEN 1:1-5` is followed by `GEN 1:2`.</i>
+
+### getLanguage
+Gets the language for the reference.
 
 ```typescript
-public IsFollowedBy(nextVerse: Reference): boolean
+public getLanguage(): Language
 ```
 
-- **reference**: The verse to check if it comes after the current verse.
-- **Returns**: Returns `true` if the current verse is followed by `nextVerse`;
-    otherwise, it returns `false`.
+- **Returns**: `Language` - The language of the reference.
 
-```ts
-const ref1 = new Reference(Language.English, "GEN 1:1");
-const ref2 = new Reference(Language.English, "GEN 1:2");
-ref1.IsFollowedBy(ref2); // returns true
-
-const ref3 = new Reference(Language.English, "MAT 5:3");
-const ref4 = new Reference(Language.English, "MAT 5:4");
-const ref5 = new Reference(Language.English, "MAT 5:5");
-ref3.IsFollowedBy(ref4); // returns true
-ref3.IsFollowedBy(ref5); // returns false
+**Examples**:
+```typescript
+const ref = new Reference(Language.English, "GEN:1");
+ref.getLanguage(); // Language.English
 ```
 
 
 <br/>
 
 
-#### Unpack
-Unpacks a verse range into it's individual verses, returning a list of verses. 
-For example `GEN:1:1-3` can be unpacked into `GEN:1:1`, `GEN:1:2`, and `GEN:1:3`.
-References can range over both chapters and verses.
+### getBook
+Gets the book of the Bible for the reference.
+
+```typescript
+public getBook(): Book
+```
+
+- **Returns**: `Book` - The book of the reference.
+
+**Examples**:
+```typescript
+const ref = new Reference(Language.English, "GEN:1");
+ref.getBook(); // Book.Genesis
+```
+
+
+<br/>
+
+
+### getChapter
+Gets the chapter number for the reference.
+
+```typescript
+public getChapter(): number
+```
+
+- **Returns**: `number` - The chapter number of the reference.
+
+**Examples**:
+```typescript
+const ref = new Reference(Language.English, "GEN:1");
+ref.getChapter(); // 1
+```
+
+
+<br/>
+
+
+### getVerse
+Gets the verse number for the reference.
+
+```typescript
+public getVerse(): number | undefined
+```
+
+- **Returns**: `number | undefined` - The verse number of the reference, or `undefined` if no verse is provided.
+
+**Examples**:
+```typescript
+const ref1 = new Reference(Language.English, "GEN:1:2");
+ref1.getVerse(); // 2
+
+const ref2 = new Reference(Language.English, "GEN:1");
+ref2.getVerse(); // undefined
+```
+
+
+<br/>
+
+
+### getVerseEnd
+Gets the end verse number for the reference.
+
+```typescript
+public getVerseEnd(): number | undefined
+```
+
+- **Returns**: `number | undefined` - The end verse of the reference, or `undefined` if no verse range is specified.
+
+**Examples**:
+```typescript
+const ref1 = new Reference(Language.English, "GEN:1:2-3");
+ref1.getVerseEnd(); // 3
+
+const ref2 = new Reference(Language.English, "GEN:1:2");
+ref2.getVerseEnd(); // undefined
+```
+
+
+<br/>
+
+
+### unpack
+Unpacks a verse range into it's individual verses, returning a list of verses. References can range over both chapters and verses.
 
 ```typescript
 public Unpack(): Reference[]
@@ -232,66 +303,76 @@ public Unpack(): Reference[]
 
 **Examples**:
 ```typescript
-const ref1 = new Reference(Language.English, `GEN:1:1-3`);
-ref1.Unpack(); // ["GEN:1:1", "GEN:1:2", "GEN:1:3"]
+const ref1 = new Reference(Language.English, `GEN:1`);
+ref1.Unpack(); // ["GEN:1:2", "GEN:1:2", ..., "GEN:1:30", "GEN:1:32"]
 
-const ref2 = new Reference(Language.English, `GEN:1:31-2:1`);
-ref2.Unpack(); // ["GEN:1:31", "GEN:2:1"]
+const ref2 = new Reference(Language.English, `GEN:1:2`);
+ref2.Unpack(); // ["GEN:1:2"]
+
+const ref3 = new Reference(Language.English, `GEN:1:2-4`);
+ref3.Unpack(); // ["GEN:1:2", "GEN:1:2", "GEN:1:3", "GEN:1:4"]
 ```
 
 
 <br/>
 
 
-#### GetError
-Checks if the reference is valid and returns the error as a string if the
-verse is invalid. For example, this ensures the verse and end of the verse
-range are valid.
-
-```typescript
-public GetError(): string | undefined
-```
-
-- **Returns**: `undefined` if the reference is valid, otherwise returns a string.
-
-**Examples**:
-```typescript
-const ref = new Reference(Language.English);
-ref.Set("MAT 5:9");
-ref.GetError(); // undefined
-ref.Set("MAT 5:1000");
-ref.GetError(); // "Invalid verse number"
-ref.Set("MAT 5:9-8");
-ref.GetError(); // "Invalid verse end number"
-```
-
-
-<br/>
-
-
-
-#### toString
+### toString
 Converts the reference to a string representation.
 
 ```typescript
-public toString(pretty?: boolean): string
+public toString(humanReadable?: boolean): string
 ```
 
-- **pretty**: (optional) If `true`, returns a human-readable string.
+- **humanReadable**: (optional) If `true`, returns a human-readable string.
 - **Returns**: The string representation of the reference.
 
 **Examples**:
 ```typescript
-const ref = new Reference(Language.English, "MAT 5:9-10");
+const ref = new Reference(Language.English, "MAT:5:9-10");
 console.log(ref.toString()); // Output: "MAT:5:9:10"
-console.log(ref.toString(true)); // Output: "MAT 5:9-10"
+console.log(ref.toString(true)); // Output: "Matthew 5:9-10"
 ```
 
 
 <br/>
 
 
-## GetBook
+### build
+Builds a reference from the provided properties.
+
+```typescript
+public static build(
+    language: Language,
+    book: Book,
+    chapter: number,
+    verse?: number,
+    verseEnd?: number
+): Reference
+```
+
+- **language**: `Language` - The language of the reference.
+- **book**: `Book` - The book of the reference.
+- **chapter**: `number` - The chapter number of the reference.
+- **verse**: `number` (Optional) - The verse number of the reference.
+- **verseEnd**: `number` (Optional) - The end verse number for a verse range.
+
+- **Returns**: `Reference` - A reference object built from the provided properties.
+
+- **Throws**: `Error` - If the reference is invalid (e.g., missing required components or malformed).
+
+**Examples**:
+```typescript
+Reference.build(Language.English, Book.Genesis, 1);        // "GEN:1"
+Reference.build(Language.English, Book.Genesis, 1, 2);     // "GEN:1:2"
+Reference.build(Language.English, Book.Genesis, 1, 2, 3);  // "GEN:1:2-3"
+```
+
+
+<br/>
+
+
+# GetBook
 Retrieves book metadata by ID or name.
 
 ```typescript
@@ -326,7 +407,7 @@ console.log(exodus);
 <br/>
 
 
-## GetAllBooks
+# GetAllBooks
 
 Retrieves book metadata for multiple IDs or names.
 
@@ -378,7 +459,7 @@ console.log(books);
 <br/>
 
 
-## Language Enumeration
+# Language Enumeration
 Enumerates the supported languages.
 
 ```typescript
@@ -391,7 +472,7 @@ enum Language {
 <br/>
 
 
-## Book Enumeration
+# Book Enumeration
 Enumerates the books of the Bible and assigns each book an ID, regardless
 of the language.
 
@@ -408,7 +489,7 @@ enum Book {
 <br/>
 
 
-## Books
+# Books
 `Books` is a constant array that contains all the books of the Bible in a 
 standardized format. Each book is represented by its abbreviation as defined in
 the `Book` enum.
@@ -426,7 +507,7 @@ const Books = [
 <br/>
 
 
-## BooksOldTestament
+# BooksOldTestament
 `BooksOldTestament` is a constant array that contains all the books of the Old
 Testament. Each book is represented by its abbreviation as defined in the
 `Book` enum.
@@ -444,7 +525,7 @@ const BooksOldTestament = [
 <br/>
 
 
-## BooksNewTestament
+# BooksNewTestament
 `BooksNewTestament` is a constant array that contains all the books of the New
 Testament. Each book is represented by its abbreviation as defined in the
 `Book` enum.
@@ -462,7 +543,7 @@ const BooksNewTestament = [
 <br/>
 
 
-## Metadata
+# Metadata
 Maps language codes to their corresponding metadata.
 ```typescript
 const Metadata: { [key in Language]: readonly BookMetadata[] } = {
@@ -474,6 +555,6 @@ const Metadata: { [key in Language]: readonly BookMetadata[] } = {
 <br/>
 
 
-### License
+# License
 This project is distributed under the MIT License.
 
